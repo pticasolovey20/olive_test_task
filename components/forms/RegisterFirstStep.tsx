@@ -16,26 +16,26 @@ const RegisterFirstStep = () => {
 		<Fragment>
 			<FormInput
 				type='text'
-				register={register}
 				name='firstName'
 				label='First Name'
+				register={register}
 				errorMessage={errors.firstName?.message}
 			/>
 
 			<FormInput
 				type='text'
-				register={register}
 				name='lastName'
 				label='Last Name'
+				register={register}
 				errorMessage={errors.lastName?.message}
 				sx={{ marginTop: '16px' }}
 			/>
 
 			<FormInput
 				type='email'
-				register={register}
 				name='emailAddress'
 				label='Email Address'
+				register={register}
 				errorMessage={errors.emailAddress?.message}
 				sx={{ marginTop: '16px' }}
 			/>

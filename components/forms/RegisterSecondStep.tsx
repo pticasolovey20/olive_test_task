@@ -4,6 +4,8 @@ import { useFormContext } from 'react-hook-form';
 import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
 
 import FormInput from '@/components/ui/FormInput';
+import FormSelect from '@/components/ui/FormSelect';
+import { countryOptions, sourceOptions } from '@/constants';
 
 const RegisterSecondStep = () => {
 	const {
@@ -15,20 +17,37 @@ const RegisterSecondStep = () => {
 		<Fragment>
 			<FormInput
 				type='text'
-				register={register}
 				name='company'
 				label='Company'
+				register={register}
 				errorMessage={errors.company?.message}
-				sx={{ marginTop: '16px' }}
 			/>
 
 			<FormInput
 				type='text'
-				register={register}
 				name='phoneNumber'
 				label='Phone'
+				register={register}
 				errorMessage={errors.phoneNumber?.message}
 				sx={{ marginTop: '16px' }}
+			/>
+
+			<FormSelect
+				name='country'
+				label='Country/Region'
+				register={register}
+				errorMessage={errors.country?.message}
+				sx={{ marginTop: '16px' }}
+				options={countryOptions}
+			/>
+
+			<FormSelect
+				name='source'
+				label='How did you know about us?'
+				register={register}
+				errorMessage={errors.source?.message}
+				sx={{ marginTop: '16px' }}
+				options={sourceOptions}
 			/>
 		</Fragment>
 	);

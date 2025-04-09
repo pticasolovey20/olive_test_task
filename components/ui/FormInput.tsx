@@ -2,28 +2,24 @@
 import React, { FC } from 'react';
 import { TextField } from '@mui/material';
 
-interface InputProps {
-	register: any;
-	helperText?: string;
-	errorMessage?: string;
-	name: string;
+interface IFormInputProps {
 	type: string;
+	name: string;
 	label: string;
-	autoComplete?: string;
+	register: any;
+	errorMessage?: string;
+	helperText?: string;
 	sx?: any;
 }
 
-const FormInput: FC<InputProps> = ({ register, helperText, errorMessage, name, type, label, autoComplete, sx }) => {
+const FormInput: FC<IFormInputProps> = ({ type, name, label, register, errorMessage, helperText, sx }) => {
 	return (
 		<TextField
 			fullWidth
-			size='medium'
-			variant='outlined'
-			{...register(name)}
-			autoComplete={autoComplete}
-			name={name}
 			type={type}
+			name={name}
 			label={label}
+			{...register(name)}
 			error={errorMessage}
 			helperText={errorMessage || helperText}
 			sx={sx}

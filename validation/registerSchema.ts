@@ -21,4 +21,8 @@ export const firstStepRegisterSchema = yup.object({
 export const secondStepRegisterSchema = yup.object({
 	company: yup.string(),
 	phoneNumber: yup.string(),
+	country: yup.string().required('Required field'),
+	source: yup.string().required('Required field'),
+	subscription: yup.boolean().default(true),
+	privacyPolicy: yup.boolean().required('You must accept the terms and conditions'),
 });

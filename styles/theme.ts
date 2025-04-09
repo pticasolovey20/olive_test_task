@@ -6,6 +6,14 @@ const theme = createTheme({
 	},
 
 	components: {
+		MuiFormControl: {
+			styleOverrides: {
+				root: {
+					minHeight: '48px',
+				},
+			},
+		},
+
 		MuiOutlinedInput: {
 			styleOverrides: {
 				root: {

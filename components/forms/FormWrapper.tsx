@@ -84,13 +84,13 @@ const FormWrapper: FC<IFormWrapperProps> = ({ currentStep, setCurrentStep, onFor
 							flexDirection: 'column',
 
 							padding: '5px 10px',
-							margin: '16px 0px',
+							marginTop: '16px',
 						}}
 					>
 						{children}
 					</Box>
 
-					<Box sx={{ padding: '0px 10px', margin: '16px 0px' }}>
+					<Box sx={{ padding: '0px 10px', marginTop: '16px' }}>
 						<SubmitButton label={currentStep === 1 ? 'Next' : 'Register'} />
 					</Box>
 				</Box>

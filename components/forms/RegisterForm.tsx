@@ -19,8 +19,13 @@ const INITIAL_DATA: RegisterFormValues = {
 	emailAddress: '',
 	password: '',
 	confirmPassword: '',
+
 	company: '',
 	phoneNumber: '',
+	country: '',
+	aboutUs: '',
+	subscription: true,
+	privacyPolicy: false,
 };
 
 const RegisterForm = () => {
