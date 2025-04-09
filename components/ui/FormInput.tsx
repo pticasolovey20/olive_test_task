@@ -3,7 +3,6 @@ import React, { FC } from 'react';
 import { TextField } from '@mui/material';
 
 interface InputProps {
-	required?: boolean;
 	register: any;
 	helperText?: string;
 	errorMessage?: string;
