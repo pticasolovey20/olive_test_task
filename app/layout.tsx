@@ -14,7 +14,7 @@ interface IRootLayout {
 const RootLayout = ({ children }: Readonly<IRootLayout>) => {
 	return (
 		<html lang='en'>
-			<body>{children}</body>
+			<body suppressHydrationWarning>{children}</body>
 		</html>
 	);
 };
