@@ -1,25 +1,21 @@
-import React, { FC } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import { Box } from '@mui/material';
 
-interface ILogoProps {
-	height: number;
-}
+import logo from '@/public/assets/logo.svg';
 
-const Logo: FC<ILogoProps> = ({ height }) => {
+const Logo = () => {
 	return (
 		<Box
 			sx={{
 				width: '100%',
-				height: height,
-				minHeight: height,
-				maxHeight: height,
+				height: '50px',
 
 				position: 'relative',
 				overflow: 'hidden',
 			}}
 		>
-			<Image priority src='https://cdn.treedis.com/users/1/favicon.png' alt='logo' width={35} height={height} />
+			<Image priority src={logo} alt='logo' height={50} />
 		</Box>
 	);
 };

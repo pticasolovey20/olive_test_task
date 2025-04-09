@@ -4,8 +4,9 @@ import { useFormContext } from 'react-hook-form';
 
 import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
 
-import { Box, Button, Typography } from '@mui/material';
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { Box, Typography } from '@mui/material';
+import BackButton from '@/components/ui/BackButton';
+import SubmitButton from '@/components/ui/SubmitButton';
 
 interface IFormWrapperProps {
 	currentStep: number;
@@ -60,7 +61,7 @@ const FormWrapper: FC<IFormWrapperProps> = ({ currentStep, setCurrentStep, onFor
 				variant='h4'
 				sx={{
 					fontSize: '34px',
-					fontWeight: 'bold',
+					fontWeight: 600,
 
 					marginBottom: '40px',
 				}}
@@ -70,18 +71,15 @@ const FormWrapper: FC<IFormWrapperProps> = ({ currentStep, setCurrentStep, onFor
 
 			<form onSubmit={onSubmit}>
 				<Box>
-					<Box
-						sx={{
-							maxWidth: '150px',
-						}}
-					>
-						<Button size='medium' color='primary' variant='text' onClick={handlePrev}>
-							<ArrowBackIcon />
-						</Button>
+					<Box sx={{ maxWidth: '150px' }}>
+						<BackButton handlePrev={handlePrev} />
 					</Box>
 
 					<Box
 						sx={{
+							maxHeight: '60vh',
+							overflow: 'auto',
+
 							display: 'flex',
 							flexDirection: 'column',
 
@@ -92,15 +90,8 @@ const FormWrapper: FC<IFormWrapperProps> = ({ currentStep, setCurrentStep, onFor
 						{children}
 					</Box>
 
-					<Box
-						sx={{
-							padding: '0px 10px',
-							margin: '16px 0px',
-						}}
-					>
-						<Button fullWidth type='submit' size='large' color='primary' variant='contained'>
-							{currentStep === 1 ? 'Next' : 'Register'}
-						</Button>
+					<Box sx={{ padding: '0px 10px', margin: '16px 0px' }}>
+						<SubmitButton label={currentStep === 1 ? 'Next' : 'Register'} />
 					</Box>
 				</Box>
 			</form>

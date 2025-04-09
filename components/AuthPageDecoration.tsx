@@ -19,7 +19,7 @@ const AuthPageDecoration = () => {
 				zIndex: 1,
 			}}
 		>
-			<Logo height={50} />
+			<Logo />
 			<Slogan />
 		</Box>
 	);
