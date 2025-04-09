@@ -53,6 +53,7 @@ const FormWrapper: FC<IFormWrapperProps> = ({ currentStep, setCurrentStep, onFor
 				display: 'flex',
 				flexDirection: 'column',
 				justifyContent: 'center',
+				zIndex: 1,
 			}}
 		>
 			<Typography

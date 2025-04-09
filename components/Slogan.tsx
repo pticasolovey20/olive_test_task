@@ -1,36 +1,39 @@
 import React from 'react';
-import Image from 'next/image';
-import { Box, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 
 const Slogan = () => {
 	return (
-		<Box
+		<Typography
 			sx={{
-				maxWidth: '479px',
-				width: '100%',
+				fontWeight: 500,
+				fontSize: { xs: '50px', md: '62px' },
+				lineHeight: { xs: '70px', md: '84px' },
 
-				display: 'flex',
-				flexDirection: 'column',
-				justifyContent: 'center',
-
-				marginRight: '52px',
+				margin: '40px 0px',
 			}}
 		>
-			<Box>
-				<Image src='https://cdn.treedis.com/users/1/favicon.png' alt='logo' width={35} height={50} />
-			</Box>
-
+			Take&nbsp;
 			<Typography
+				component='span'
 				sx={{
-					fontSize: '62px',
-					lineHeight: '84px',
+					display: 'inline-block',
+					color: 'rgb(255, 255, 255)',
+					fontSize: { xs: '50px', md: '62px' },
+					lineHeight: { xs: '70px', md: '84px' },
 
-					margin: '40px 0px',
+					borderRadius: '10px',
+					paddingLeft: '4px',
+					paddingRight: '4px',
+					backgroundColor: 'rgb(32, 85, 255)',
 				}}
 			>
-				Take reality to the next level
+				reality
 			</Typography>
-		</Box>
+			<br />
+			to the next
+			<br />
+			level
+		</Typography>
 	);
 };
 
