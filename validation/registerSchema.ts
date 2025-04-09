@@ -24,5 +24,8 @@ export const secondStepRegisterSchema = yup.object({
 	country: yup.string().required('Required field'),
 	source: yup.string().required('Required field'),
 	subscription: yup.boolean().default(true),
-	privacyPolicy: yup.boolean().required('You must accept the terms and conditions'),
+	privacyPolicy: yup
+		.boolean()
+		.oneOf([true], 'You must accept the terms and conditions')
+		.required('You must accept the terms and conditions'),
 });

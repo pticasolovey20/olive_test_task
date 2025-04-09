@@ -23,7 +23,7 @@ const INITIAL_DATA: RegisterFormValues = {
 	company: '',
 	phoneNumber: '',
 	country: '',
-	aboutUs: '',
+	source: '',
 	subscription: true,
 	privacyPolicy: false,
 };

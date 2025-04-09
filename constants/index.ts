@@ -172,3 +172,9 @@ export const sourceOptions = [
 	{ label: 'Word of Mouth', value: 'word_of_mouth' },
 	{ label: 'Other', value: 'other' },
 ];
+
+export enum links {
+	TERMS_OF_USE = 'https://www.treedis.com/terms-of-use',
+	COOKIE_POLICY = 'https://www.treedis.com/cookie-policy',
+	PRIVACY_POLICY = 'https://www.treedis.com/privacy-policy',
+}
