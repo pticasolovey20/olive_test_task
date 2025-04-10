@@ -11,50 +11,48 @@ interface IRegistrationLayoutProps {
 
 const RegistrationLayout: FC<IRegistrationLayoutProps> = ({ children }) => {
 	return (
-		<div>
-			<ThemeProvider theme={theme}>
+		<ThemeProvider theme={theme}>
+			<Box
+				component='main'
+				sx={{
+					display: 'flex',
+				}}
+			>
 				<Box
-					component='main'
 					sx={{
+						width: '100%',
+						height: '100dvh',
+
 						display: 'flex',
+						justifyContent: 'center',
+
+						overflow: 'hidden',
+						position: 'relative',
+
+						padding: '0px 40px',
+						zIndex: 1,
+
+						'&::before': {
+							content: '""',
+							position: 'absolute',
+							top: 0,
+							right: 0,
+
+							width: '70%',
+							height: '100%',
+
+							transformOrigin: 'center bottom',
+							transform: 'skew(-13.9deg, 0deg)',
+							backgroundColor: 'rgb(247, 247, 247)',
+							zIndex: 0,
+						},
 					}}
 				>
-					<Box
-						sx={{
-							width: '100%',
-							height: '100dvh',
-
-							display: 'flex',
-							justifyContent: 'center',
-
-							overflow: 'hidden',
-							position: 'relative',
-
-							padding: '0px 40px',
-							zIndex: 1,
-
-							'&::before': {
-								content: '""',
-								position: 'absolute',
-								top: 0,
-								right: 0,
-
-								width: '70%',
-								height: '100%',
-
-								transformOrigin: 'center bottom',
-								transform: 'skew(-13.9deg, 0deg)',
-								backgroundColor: 'rgb(247, 247, 247)',
-								zIndex: 0,
-							},
-						}}
-					>
-						<AuthPageDecoration />
-						{children}
-					</Box>
+					<AuthPageDecoration />
+					{children}
 				</Box>
-			</ThemeProvider>
-		</div>
+			</Box>
+		</ThemeProvider>
 	);
 };
 
