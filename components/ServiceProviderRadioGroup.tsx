@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { ChangeEvent, FC } from 'react';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
 import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
@@ -6,11 +6,18 @@ import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
 import { FormControl, Box, Typography, RadioGroup, Radio, FormControlLabel, FormHelperText } from '@mui/material';
 
 interface IServiceProviderRadioGroupProps {
+	formData: RegisterFormValues;
 	control: Control<RegisterFormValues>;
 	errors: FieldErrors<RegisterFormValues>;
+	handleRadioChange: (event: ChangeEvent<HTMLInputElement>, name: keyof RegisterFormValues) => void;
 }
 
-const ServiceProviderRadioGroup: FC<IServiceProviderRadioGroupProps> = ({ control, errors }) => {
+const ServiceProviderRadioGroup: FC<IServiceProviderRadioGroupProps> = ({
+	formData,
+	control,
+	errors,
+	handleRadioChange,
+}) => {
 	return (
 		<FormControl fullWidth error={!!errors.isServiceProvider?.message} sx={{ marginTop: '16px' }}>
 			<Box
@@ -27,7 +34,12 @@ const ServiceProviderRadioGroup: FC<IServiceProviderRadioGroupProps> = ({ contro
 				control={control}
 				name='isServiceProvider'
 				render={({ field }) => (
-					<RadioGroup {...field} row value={field.value ?? null}>
+					<RadioGroup
+						row
+						{...field}
+						value={formData.isServiceProvider || field.value || null}
+						onChange={(event) => handleRadioChange(event, 'isServiceProvider')}
+					>
 						<FormControlLabel value='yes' control={<Radio />} label='Yes' />
 						<FormControlLabel value='no' control={<Radio />} label='No' />
 					</RadioGroup>

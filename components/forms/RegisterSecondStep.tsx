@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
+import React, { FC, ChangeEvent, Fragment } from 'react';
+import { SelectChangeEvent } from '@mui/material';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
 import { countryOptions, sourceOptions } from '@/constants';
+import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
 
 import FormInput from '@/components/ui/FormInput';
 import FormSelect from '@/components/ui/FormSelect';
@@ -10,7 +11,24 @@ import ServiceProvider from '@/components/ServiceProvider';
 import ServiceProviderRadioGroup from '../ServiceProviderRadioGroup';
 import PolicyAgreementSection from '../PolicyAgreementSection';
 
-const RegisterSecondStep = () => {
+interface IRegisterSecondStepProps {
+	formData: RegisterFormValues;
+	handleInputChange: (
+		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+		name: keyof RegisterFormValues
+	) => void;
+	handleSelectChange: (event: SelectChangeEvent<string | boolean | null>, name: keyof RegisterFormValues) => void;
+	handleCheckboxChange: (event: ChangeEvent<HTMLInputElement>, name: keyof RegisterFormValues) => void;
+	handleRadioChange: (event: ChangeEvent<HTMLInputElement>, name: keyof RegisterFormValues) => void;
+}
+
+const RegisterSecondStep: FC<IRegisterSecondStepProps> = ({
+	formData,
+	handleInputChange,
+	handleSelectChange,
+	handleCheckboxChange,
+	handleRadioChange,
+}) => {
 	const {
 		control,
 		register,
@@ -32,6 +50,8 @@ const RegisterSecondStep = () => {
 				name='company'
 				label='Company'
 				register={register}
+				value={formData.company || ''}
+				onChange={(event) => handleInputChange(event, 'company')}
 				errorMessage={errors.company?.message}
 			/>
 
@@ -40,6 +60,8 @@ const RegisterSecondStep = () => {
 				name='phoneNumber'
 				label='Phone'
 				register={register}
+				value={formData.phoneNumber || ''}
+				onChange={(event) => handleInputChange(event, 'phoneNumber')}
 				errorMessage={errors.phoneNumber?.message}
 				sx={{ marginTop: '16px' }}
 			/>
@@ -50,6 +72,8 @@ const RegisterSecondStep = () => {
 				register={register}
 				errorMessage={errors.country?.message}
 				options={countryOptions}
+				value={formData.country}
+				onChange={(event) => handleSelectChange(event, 'country')}
 				sx={{ marginTop: '16px' }}
 			/>
 
@@ -59,13 +83,29 @@ const RegisterSecondStep = () => {
 				register={register}
 				errorMessage={errors.source?.message}
 				options={sourceOptions}
+				value={formData.source}
+				onChange={(event) => handleSelectChange(event, 'source')}
 				sx={{ marginTop: '16px' }}
 			/>
 
-			<ServiceProviderRadioGroup control={control} errors={errors} />
-			{showServiceProvider && <ServiceProvider isServiceProvider={isServiceProvider} />}
+			<ServiceProviderRadioGroup
+				formData={formData}
+				control={control}
+				errors={errors}
+				handleRadioChange={handleRadioChange}
+			/>
 
-			<PolicyAgreementSection register={register} errors={errors} />
+			{showServiceProvider && (
+				<ServiceProvider
+					isServiceProvider={isServiceProvider}
+					formData={formData}
+					handleSelectChange={handleSelectChange}
+					handleInputChange={handleInputChange}
+					handleRadioChange={handleRadioChange}
+				/>
+			)}
+
+			<PolicyAgreementSection register={register} errors={errors} handleCheckboxChange={handleCheckboxChange} />
 		</Fragment>
 	);
 };

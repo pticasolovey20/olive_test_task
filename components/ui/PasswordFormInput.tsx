@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
 import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
@@ -14,6 +14,9 @@ interface IPasswordFormInputProps {
 	autoComplete?: string;
 	helperText?: string;
 	sx?: SxProps;
+
+	value: string;
+	onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
 const PasswordFormInput: FC<IPasswordFormInputProps> = ({
@@ -24,6 +27,8 @@ const PasswordFormInput: FC<IPasswordFormInputProps> = ({
 	autoComplete,
 	helperText,
 	sx,
+	value,
+	onChange,
 }) => {
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 
@@ -34,6 +39,8 @@ const PasswordFormInput: FC<IPasswordFormInputProps> = ({
 			fullWidth
 			label={label}
 			{...register(name)}
+			value={value}
+			onChange={onChange}
 			error={!!errorMessage}
 			autoComplete={autoComplete}
 			helperText={errorMessage || helperText}
