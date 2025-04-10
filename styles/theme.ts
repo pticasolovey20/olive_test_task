@@ -5,6 +5,16 @@ const theme = createTheme({
 		fontFamily: ['Codecpro', 'sans-serif'].join(','),
 	},
 
+	breakpoints: {
+		values: {
+			xs: 0,
+			sm: 700,
+			md: 900,
+			lg: 1200,
+			xl: 1536,
+		},
+	},
+
 	components: {
 		MuiOutlinedInput: {
 			styleOverrides: {

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, ThemeProvider, useMediaQuery } from '@mui/material';
+import { Box, ThemeProvider } from '@mui/material';
 
 import theme from '@/styles/theme';
 
@@ -9,8 +9,6 @@ import AuthPageDecoration from '@/components/AuthPageDecoration';
 import RegisterForm from '@/components/forms/RegisterForm';
 
 const RegisterPage = () => {
-	const isDecorationVisible = useMediaQuery('(min-width:701px)');
-
 	return (
 		<ThemeProvider theme={theme}>
 			<Box
@@ -49,7 +47,7 @@ const RegisterPage = () => {
 						},
 					}}
 				>
-					{isDecorationVisible && <AuthPageDecoration />}
+					<AuthPageDecoration />
 					<RegisterForm />
 				</Box>
 			</Box>

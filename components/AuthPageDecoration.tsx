@@ -11,7 +11,7 @@ const AuthPageDecoration = () => {
 				maxWidth: '479px',
 				width: '100%',
 
-				display: 'flex',
+				display: { xs: 'none', sm: 'flex' },
 				flexDirection: 'column',
 				justifyContent: 'center',
 
