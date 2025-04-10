@@ -8,8 +8,9 @@ import { RegisterFormValues } from '@/interfaces/authInterfaces';
 import FormInput from '@/components/ui/FormInput';
 import FormSelect from '@/components/ui/FormSelect';
 import ServiceProvider from '@/components/ServiceProvider';
-import ServiceProviderRadioGroup from '../ServiceProviderRadioGroup';
-import PolicyAgreementSection from '../PolicyAgreementSection';
+import ServiceProviderRadioGroup from '@/components/ServiceProviderRadioGroup';
+import PolicyAgreementSection from '@/components/PolicyAgreementSection';
+import FormPhoneInput from '@/components/ui/FormPhoneInput';
 
 interface IRegisterSecondStepProps {
 	formData: RegisterFormValues;
@@ -55,13 +56,9 @@ const RegisterSecondStep: FC<IRegisterSecondStepProps> = ({
 				errorMessage={errors.company?.message}
 			/>
 
-			<FormInput
-				type='text'
+			<FormPhoneInput
 				name='phoneNumber'
-				label='Phone'
-				register={register}
-				value={formData.phoneNumber || ''}
-				onChange={(event) => handleInputChange(event, 'phoneNumber')}
+				control={control}
 				errorMessage={errors.phoneNumber?.message}
 				sx={{ marginTop: '16px' }}
 			/>
