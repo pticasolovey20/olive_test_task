@@ -38,7 +38,7 @@ const TogglePasswordButton: FC<ITogglePasswordButtonProps> = ({ showPassword, ha
 						role='img'
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 640 512'
-						font-size='18px'
+						fontSize='18px'
 					>
 						<path
 							fill='currentColor'
@@ -54,7 +54,7 @@ const TogglePasswordButton: FC<ITogglePasswordButtonProps> = ({ showPassword, ha
 						role='img'
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 640 512'
-						font-size='18px'
+						fontSize='18px'
 					>
 						<path
 							fill='currentColor'

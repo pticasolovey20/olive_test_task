@@ -33,7 +33,7 @@ const BackButton: FC<IBackButtonProps> = ({ handlePrev }) => {
 					role='img'
 					xmlns='http://www.w3.org/2000/svg'
 					viewBox='0 0 448 512'
-					font-size='25px'
+					fontSize='25px'
 				>
 					<path
 						fill='currentColor'

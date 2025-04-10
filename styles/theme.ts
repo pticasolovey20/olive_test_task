@@ -6,14 +6,6 @@ const theme = createTheme({
 	},
 
 	components: {
-		MuiFormControl: {
-			styleOverrides: {
-				root: {
-					minHeight: '48px',
-				},
-			},
-		},
-
 		MuiOutlinedInput: {
 			styleOverrides: {
 				root: {
@@ -67,6 +59,29 @@ const theme = createTheme({
 
 					'&.Mui-error': {
 						color: 'rgb(243, 72, 72)',
+					},
+				},
+			},
+		},
+
+		MuiRadio: {
+			styleOverrides: {
+				root: {
+					'&.Mui-checked': {
+						color: 'rgb(32, 85, 255)',
+					},
+				},
+			},
+		},
+
+		MuiCheckbox: {
+			styleOverrides: {
+				root: {
+					padding: '9px',
+					borderRadius: '4px',
+
+					'&.Mui-checked': {
+						color: 'rgb(32, 85, 255)',
 					},
 				},
 			},

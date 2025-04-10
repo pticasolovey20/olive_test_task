@@ -1,17 +1,19 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-
 import React, { FC, useState } from 'react';
-import { TextField } from '@mui/material';
+import { UseFormRegister } from 'react-hook-form';
+
+import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+
+import { SxProps, TextField } from '@mui/material';
 import TogglePasswordButton from '@/components/ui/TogglePasswordButton';
 
 interface IPasswordFormInputProps {
-	name: string;
+	name: keyof RegisterFormValues;
 	label: string;
-	register: any;
+	register: UseFormRegister<RegisterFormValues>;
 	errorMessage?: string;
 	autoComplete?: string;
 	helperText?: string;
-	sx?: any;
+	sx?: SxProps;
 }
 
 const PasswordFormInput: FC<IPasswordFormInputProps> = ({
@@ -30,10 +32,9 @@ const PasswordFormInput: FC<IPasswordFormInputProps> = ({
 	return (
 		<TextField
 			fullWidth
-			name={name}
 			label={label}
 			{...register(name)}
-			error={errorMessage}
+			error={!!errorMessage}
 			autoComplete={autoComplete}
 			helperText={errorMessage || helperText}
 			type={showPassword ? 'text' : 'password'}

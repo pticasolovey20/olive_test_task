@@ -1,4 +1,6 @@
-export const countryOptions = [
+import { IOption } from '@/interfaces/interfaces';
+
+export const countryOptions: IOption[] = [
 	{ label: 'Afghanistan', value: 'AF' },
 	{ label: 'Albania', value: 'AL' },
 	{ label: 'Algeria', value: 'DZ' },
@@ -161,7 +163,7 @@ export const countryOptions = [
 	{ label: 'Zimbabwe', value: 'ZW' },
 ];
 
-export const sourceOptions = [
+export const sourceOptions: IOption[] = [
 	{ label: 'Matterport Website', value: 'matterport_website' },
 	{ label: 'Email Marketing', value: 'email_marketing' },
 	{ label: 'Facebook', value: 'facebook' },
@@ -171,6 +173,34 @@ export const sourceOptions = [
 	{ label: 'Instagram', value: 'instagram' },
 	{ label: 'Word of Mouth', value: 'word_of_mouth' },
 	{ label: 'Other', value: 'other' },
+];
+
+export const numbersOfSpacesOptions: IOption[] = [
+	{ label: '0-5', value: '0-5' },
+	{ label: '5-100', value: '5-100' },
+	{ label: '100+', value: '100+' },
+	{ label: '1000+', value: '1000+' },
+];
+
+export const numbersOfEmployeesOptions: IOption[] = [
+	{ value: '1-5', label: '1-5' },
+	{ value: '5-25', label: '5-25' },
+	{ value: '25-50', label: '25-50' },
+	{ value: '50-100', label: '50-100' },
+	{ value: '100-500', label: '100-500' },
+	{ value: '500-1000', label: '500-1000' },
+	{ value: '1000+', label: '1000+' },
+];
+
+export const industryOptions: IOption[] = [
+	{ value: 'real_estate', label: 'Real Estate' },
+	{ value: 'manufacturing', label: 'Manufacturing' },
+	{ value: 'travel_hospitality', label: 'Travel & Hospitality' },
+	{ value: 'museums_galleries', label: 'Museums & Galleries' },
+	{ value: 'education', label: 'Education' },
+	{ value: 'corporate_enterprise', label: 'Corporate & Enterprise' },
+	{ value: 'retail_showrooms', label: 'Retail & Showrooms' },
+	{ value: 'other', label: 'Other' },
 ];
 
 export enum links {

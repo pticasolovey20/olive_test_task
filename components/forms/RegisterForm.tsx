@@ -24,6 +24,15 @@ const INITIAL_DATA: RegisterFormValues = {
 	phoneNumber: '',
 	country: '',
 	source: '',
+
+	isServiceProvider: null,
+	numbersOfSpaces: '',
+	numbersOfEmployees: '',
+	industry: '',
+	jobDescription: '',
+	website: '',
+	digital: null,
+
 	subscription: true,
 	privacyPolicy: false,
 };

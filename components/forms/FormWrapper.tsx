@@ -33,7 +33,23 @@ const FormWrapper: FC<IFormWrapperProps> = ({ currentStep, setCurrentStep, onFor
 		const isValid = await trigger(
 			currentStep === 1
 				? ['firstName', 'lastName', 'emailAddress', 'password', 'confirmPassword']
-				: ['company', 'phoneNumber']
+				: [
+						'company',
+						'phoneNumber',
+						'country',
+						'source',
+
+						'isServiceProvider',
+						'numbersOfSpaces',
+						'numbersOfEmployees',
+						'industry',
+						'jobDescription',
+						'website',
+						'digital',
+
+						'subscription',
+						'privacyPolicy',
+				  ]
 		);
 
 		if (!isValid) return;

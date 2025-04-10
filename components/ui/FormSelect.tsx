@@ -1,18 +1,21 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC } from 'react';
-import { FormControl, FormHelperText, InputLabel, MenuItem, Select } from '@mui/material';
+import { UseFormRegister } from 'react-hook-form';
+
+import { IOption } from '@/interfaces/interfaces';
+import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+
+import { FormControl, FormHelperText, InputLabel, MenuItem, Select, SxProps } from '@mui/material';
 
 interface IFormSelectProps {
-	name: string;
+	name: keyof RegisterFormValues;
 	label: string;
-	register: any;
+	register: UseFormRegister<RegisterFormValues>;
 	errorMessage?: string;
-	helperText?: string;
-	sx?: any;
-	options: any[];
+	sx?: SxProps;
+	options: IOption[];
 }
 
-const FormSelect: FC<IFormSelectProps> = ({ name, label, register, errorMessage, helperText, sx, options }) => {
+const FormSelect: FC<IFormSelectProps> = ({ name, label, register, errorMessage, sx, options }) => {
 	return (
 		<FormControl fullWidth sx={sx} error={!!errorMessage}>
 			<InputLabel id={`${name}-label`}>{label}</InputLabel>
@@ -25,7 +28,7 @@ const FormSelect: FC<IFormSelectProps> = ({ name, label, register, errorMessage,
 				))}
 			</Select>
 
-			<FormHelperText>{errorMessage || helperText}</FormHelperText>
+			{errorMessage && <FormHelperText>{errorMessage}</FormHelperText>}
 		</FormControl>
 	);
 };

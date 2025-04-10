@@ -1,15 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { FC } from 'react';
-import { TextField } from '@mui/material';
+import { UseFormRegister } from 'react-hook-form';
+
+import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+
+import { SxProps, TextField } from '@mui/material';
 
 interface IFormInputProps {
 	type: string;
-	name: string;
+	name: keyof RegisterFormValues;
 	label: string;
-	register: any;
+	register: UseFormRegister<RegisterFormValues>;
 	errorMessage?: string;
 	helperText?: string;
-	sx?: any;
+	sx?: SxProps;
 }
 
 const FormInput: FC<IFormInputProps> = ({ type, name, label, register, errorMessage, helperText, sx }) => {
@@ -17,10 +20,9 @@ const FormInput: FC<IFormInputProps> = ({ type, name, label, register, errorMess
 		<TextField
 			fullWidth
 			type={type}
-			name={name}
 			label={label}
 			{...register(name)}
-			error={errorMessage}
+			error={!!errorMessage}
 			helperText={errorMessage || helperText}
 			sx={sx}
 		/>

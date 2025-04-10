@@ -23,6 +23,27 @@ export const secondStepRegisterSchema = yup.object({
 	phoneNumber: yup.string(),
 	country: yup.string().required('Required field'),
 	source: yup.string().required('Required field'),
+
+	isServiceProvider: yup.string().required('Required field'),
+
+	numbersOfSpaces: yup.string().when('isServiceProvider', {
+		is: (isServiceProvider: string) => isServiceProvider === 'yes',
+		then: (schema) => schema.required('Required field'),
+		otherwise: (schema) => schema.nullable(),
+	}),
+
+	numbersOfEmployees: yup.string().required('Required field'),
+
+	industry: yup.string().when('isServiceProvider', {
+		is: (isServiceProvider: string) => isServiceProvider === 'no',
+		then: (schema) => schema.required('Required field'),
+		otherwise: (schema) => schema.nullable(),
+	}),
+
+	jobDescription: yup.string().required('Required field'),
+	website: yup.string().required('Required field'),
+	digital: yup.string().required('Required field'),
+
 	subscription: yup.boolean().default(true),
 	privacyPolicy: yup
 		.boolean()
