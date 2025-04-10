@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { UseFormRegister } from 'react-hook-form';
 
 import { IOption } from '@/interfaces/interfaces';
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+import { RegisterFormValues } from '@/interfaces/authInterfaces';
 
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select, SelectChangeEvent, SxProps } from '@mui/material';
 

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC } from 'react';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+import { RegisterFormValues } from '@/interfaces/authInterfaces';
 
 import { FormControl, Box, Typography, RadioGroup, Radio, FormControlLabel, FormHelperText } from '@mui/material';
 

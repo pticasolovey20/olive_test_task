@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+import { RegisterFormValues } from '@/interfaces/authInterfaces';
 
 interface RegisterFormStore {
 	formData: RegisterFormValues;

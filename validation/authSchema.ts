@@ -50,3 +50,14 @@ export const secondStepRegisterSchema = yup.object({
 		.oneOf([true], 'You must accept the terms and conditions')
 		.required('You must accept the terms and conditions'),
 });
+
+export const loginSchema = yup.object({
+	emailAddress: yup.string().required('Required field').email('Not a valid email address'),
+	password: yup
+		.string()
+		.required('Required field')
+		.matches(
+			/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/,
+			'Password must be at least 8 english characters, and contain 1 uppercase, 1 lowercase and 1 digit'
+		),
+});

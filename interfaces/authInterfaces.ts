@@ -1,8 +1,11 @@
-export interface RegisterFormValues {
-	firstName: string;
-	lastName: string;
+export interface BaseFormValues {
 	emailAddress: string;
 	password: string;
+}
+
+export interface RegisterFormValues extends BaseFormValues {
+	firstName: string;
+	lastName: string;
 	confirmPassword: string;
 
 	company?: string;

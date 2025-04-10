@@ -2,7 +2,7 @@ import React, { ReactNode, FC, Dispatch, SetStateAction, FormEvent } from 'react
 import { useRouter } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+import { RegisterFormValues } from '@/interfaces/authInterfaces';
 
 import { Box, Typography } from '@mui/material';
 import BackButton from '@/components/ui/BackButton';

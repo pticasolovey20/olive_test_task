@@ -1,15 +1,13 @@
-import React, { ChangeEvent, FC } from 'react';
-import { UseFormRegister } from 'react-hook-form';
-
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+import React, { ChangeEvent } from 'react';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 import { SxProps, TextField } from '@mui/material';
 
-interface IFormInputProps {
+interface IFormInputProps<T extends FieldValues> {
 	type: string;
-	name: keyof RegisterFormValues;
+	name: Path<T>;
 	label: string;
-	register: UseFormRegister<RegisterFormValues>;
+	register: UseFormRegister<T>;
 	errorMessage?: string;
 	helperText?: string;
 	sx?: SxProps;
@@ -17,7 +15,7 @@ interface IFormInputProps {
 	onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-const FormInput: FC<IFormInputProps> = ({
+const FormInput = <T extends FieldValues>({
 	type,
 	name,
 	label,
@@ -27,7 +25,7 @@ const FormInput: FC<IFormInputProps> = ({
 	sx,
 	value,
 	onChange,
-}) => {
+}: IFormInputProps<T>) => {
 	return (
 		<TextField
 			fullWidth

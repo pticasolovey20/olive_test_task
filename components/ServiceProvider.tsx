@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, Fragment } from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
 
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+import { RegisterFormValues } from '@/interfaces/authInterfaces';
 import { numbersOfEmployeesOptions, industryOptions, numbersOfSpacesOptions } from '@/constants';
 
 import {

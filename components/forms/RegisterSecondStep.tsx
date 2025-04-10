@@ -3,7 +3,7 @@ import { SelectChangeEvent } from '@mui/material';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { countryOptions, sourceOptions } from '@/constants';
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+import { RegisterFormValues } from '@/interfaces/authInterfaces';
 
 import FormInput from '@/components/ui/FormInput';
 import FormSelect from '@/components/ui/FormSelect';

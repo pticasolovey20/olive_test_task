@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, Fragment } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+import { RegisterFormValues } from '@/interfaces/authInterfaces';
 
 import FormInput from '@/components/ui/FormInput';
 import PasswordFormInput from '../ui/PasswordFormInput';

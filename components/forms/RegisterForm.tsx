@@ -1,10 +1,12 @@
+'use client';
+
 import React, { ChangeEvent, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { SelectChangeEvent } from '@mui/material';
 
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
-import { firstStepRegisterSchema, secondStepRegisterSchema } from '@/validation/registerSchema';
+import { RegisterFormValues } from '@/interfaces/authInterfaces';
+import { firstStepRegisterSchema, secondStepRegisterSchema } from '@/validation/authSchema';
 
 import RegisterFirstStep from '@/components/forms/RegisterFirstStep';
 import RegisterSecondStep from '@/components/forms/RegisterSecondStep';
@@ -48,7 +50,7 @@ const RegisterForm = () => {
 		form.setValue(name, event.target.value);
 	};
 
-	const onFormSubmit = (formData: RegisterFormValues) => console.log('final data:', formData);
+	const onFormSubmit = (formData: RegisterFormValues) => console.log('final formData:', formData);
 
 	return (
 		<FormProvider {...form}>

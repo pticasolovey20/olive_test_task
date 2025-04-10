@@ -3,7 +3,7 @@ import { FieldErrors, UseFormRegister } from 'react-hook-form';
 
 import { links } from '@/constants';
 import useRegisterFormStore from '@/stores/registrationFormStore';
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+import { RegisterFormValues } from '@/interfaces/authInterfaces';
 
 import Link from 'next/link';
 import { Checkbox, FormControl, FormControlLabel, FormHelperText, Typography } from '@mui/material';

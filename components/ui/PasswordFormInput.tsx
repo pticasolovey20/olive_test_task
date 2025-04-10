@@ -1,15 +1,13 @@
-import React, { ChangeEvent, FC, useState } from 'react';
-import { UseFormRegister } from 'react-hook-form';
-
-import { RegisterFormValues } from '@/interfaces/registerFormInterfaces';
+import React, { ChangeEvent, useState } from 'react';
+import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
 
 import { SxProps, TextField } from '@mui/material';
 import TogglePasswordButton from '@/components/ui/TogglePasswordButton';
 
-interface IPasswordFormInputProps {
-	name: keyof RegisterFormValues;
+interface IPasswordFormInputProps<T extends FieldValues> {
+	name: Path<T>;
 	label: string;
-	register: UseFormRegister<RegisterFormValues>;
+	register: UseFormRegister<T>;
 	errorMessage?: string;
 	autoComplete?: string;
 	helperText?: string;
@@ -19,7 +17,7 @@ interface IPasswordFormInputProps {
 	onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
-const PasswordFormInput: FC<IPasswordFormInputProps> = ({
+const PasswordFormInput = <T extends FieldValues>({
 	name,
 	label,
 	register,
@@ -29,7 +27,7 @@ const PasswordFormInput: FC<IPasswordFormInputProps> = ({
 	sx,
 	value,
 	onChange,
-}) => {
+}: IPasswordFormInputProps<T>) => {
 	const [showPassword, setShowPassword] = useState<boolean>(false);
 
 	const handleToggle = () => setShowPassword((show) => !show);
