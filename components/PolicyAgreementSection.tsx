@@ -55,9 +55,18 @@ const PolicyAgreementSection: FC<IPolicyAgreementSectionProps> = ({ register, er
 				}
 				label={
 					<Typography sx={{ fontSize: '0.875rem' }}>
-						By registering, I agree to Treedis <Link href={links.TERMS_OF_USE}>Terms of Use</Link> ,{' '}
-						<Link href={links.COOKIE_POLICY}>Cookie Policy</Link> and{' '}
-						<Link href={links.PRIVACY_POLICY}>Privacy Policy.</Link>
+						By registering, I agree to Treedis{' '}
+						<Link href={links.TERMS_OF_USE} target='_blank'>
+							Terms of Use
+						</Link>{' '}
+						,{' '}
+						<Link href={links.COOKIE_POLICY} target='_blank'>
+							Cookie Policy
+						</Link>{' '}
+						and{' '}
+						<Link href={links.PRIVACY_POLICY} target='_blank'>
+							Privacy Policy.
+						</Link>
 					</Typography>
 				}
 			/>
