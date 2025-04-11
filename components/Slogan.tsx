@@ -1,8 +1,10 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Typography, useTheme } from '@mui/material';
 
 const Slogan = () => {
 	const theme = useTheme();
+	const { t } = useTranslation();
 
 	return (
 		<Typography
@@ -10,11 +12,10 @@ const Slogan = () => {
 				fontWeight: 500,
 				fontSize: { xs: '50px', md: '62px' },
 				lineHeight: { xs: '70px', md: '84px' },
-
 				margin: '40px 0px',
 			}}
 		>
-			Take&nbsp;
+			{t('slogan.take')}&nbsp;
 			<Typography
 				component='span'
 				sx={{
@@ -22,19 +23,18 @@ const Slogan = () => {
 					color: 'rgb(255, 255, 255)',
 					fontSize: { xs: '50px', md: '62px' },
 					lineHeight: { xs: '70px', md: '84px' },
-
 					borderRadius: '10px',
 					paddingLeft: '4px',
 					paddingRight: '4px',
 					backgroundColor: theme.palette.primary.main,
 				}}
 			>
-				reality
+				{t('slogan.reality')}
 			</Typography>
 			<br />
-			to the next
+			{t('slogan.toTheNext')}
 			<br />
-			level
+			{t('slogan.level')}
 		</Typography>
 	);
 };

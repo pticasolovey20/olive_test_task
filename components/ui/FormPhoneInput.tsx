@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 
 import PhoneInput from 'react-phone-input-2';
@@ -117,6 +118,7 @@ const StyledPhoneInput = styled(PhoneInput)`
 
 const FormPhoneInput = <T extends FieldValues>({ name, control, sx }: IFormPhoneInputProps<T>) => {
 	const [phoneNumberError, setPhoneNumberError] = useState<boolean>(false);
+	const { t } = useTranslation();
 
 	const validatePhoneNumber = (inputNumber: string, country: any, isDirty: boolean) => {
 		const phoneLength = Math.ceil(country.format.length / 2);
@@ -146,13 +148,13 @@ const FormPhoneInput = <T extends FieldValues>({ name, control, sx }: IFormPhone
 					<StyledPhoneInput
 						country='us'
 						placeholder=''
-						specialLabel='Phone'
+						specialLabel={t('label.phoneNumber')}
 						value={value}
 						onChange={onChange}
 						isValid={(value: string, country: any) => validatePhoneNumber(value, country, formState.isDirty)}
 					/>
 
-					{phoneNumberError && <FormHelperText>Phone must be valid</FormHelperText>}
+					{phoneNumberError && <FormHelperText>{t('validation.phoneMustValid')}</FormHelperText>}
 				</FormControl>
 			)}
 		/>

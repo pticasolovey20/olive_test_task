@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
 import { RegisterFormValues } from '@/interfaces/authInterfaces';
@@ -11,6 +12,8 @@ interface IServiceProviderRadioGroupProps {
 }
 
 const ServiceProviderRadioGroup: FC<IServiceProviderRadioGroupProps> = ({ control, errors }) => {
+	const { t } = useTranslation();
+
 	return (
 		<FormControl fullWidth error={!!errors.isServiceProvider?.message} sx={{ marginTop: '16px' }}>
 			<Box
@@ -20,7 +23,7 @@ const ServiceProviderRadioGroup: FC<IServiceProviderRadioGroupProps> = ({ contro
 					alignItems: 'center',
 				}}
 			>
-				<Typography>Are you a Matterport service provider?</Typography>
+				<Typography>{t('label.isServiceProvider')}</Typography>
 			</Box>
 
 			<Controller
@@ -28,8 +31,8 @@ const ServiceProviderRadioGroup: FC<IServiceProviderRadioGroupProps> = ({ contro
 				name='isServiceProvider'
 				render={({ field: { value, onChange } }) => (
 					<RadioGroup row value={value} onChange={onChange}>
-						<FormControlLabel value='yes' control={<Radio />} label='Yes' />
-						<FormControlLabel value='no' control={<Radio />} label='No' />
+						<FormControlLabel value='yes' control={<Radio />} label={t('radioOptions.yes')} />
+						<FormControlLabel value='no' control={<Radio />} label={t('radioOptions.no')} />
 					</RadioGroup>
 				)}
 			/>

@@ -3,9 +3,10 @@
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
 
-import { loginSchema } from '@/validation/authSchema';
+import { getLoginSchema } from '@/validation/authSchema';
 import useLoginFormStore from '@/stores/authStore';
 import { LoginFormValues } from '@/interfaces/authInterfaces';
 
@@ -17,6 +18,7 @@ import PasswordFormInput from '@/components/ui/PasswordFormInput';
 
 const LoginForm = () => {
 	const { handleLogin } = useLoginFormStore();
+	const { t } = useTranslation();
 	const router = useRouter();
 	const {
 		control,
@@ -26,7 +28,7 @@ const LoginForm = () => {
 		mode: 'onChange',
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		resolver: yupResolver(loginSchema) as any, //??,
+		resolver: yupResolver(getLoginSchema(t)) as any, //??,
 	});
 
 	const onFormSubmit = (formData: LoginFormValues) => {
@@ -69,8 +71,8 @@ const LoginForm = () => {
 					marginBottom: '40px',
 				}}
 			>
-				Welcome! <br />
-				Login to continue
+				{t('form.welcome')}! <br />
+				{t('form.loginToContinue')}
 			</Typography>
 
 			<form onSubmit={handleSubmit(onFormSubmit)}>
@@ -83,7 +85,7 @@ const LoginForm = () => {
 					<FormInput<LoginFormValues>
 						type='email'
 						name='emailAddress'
-						label='Email Address'
+						label={t('label.emailAddress')}
 						control={control}
 						errorMessage={errors.emailAddress?.message}
 						sx={{ marginTop: '16px' }}
@@ -91,7 +93,7 @@ const LoginForm = () => {
 
 					<PasswordFormInput<LoginFormValues>
 						name='password'
-						label='Password'
+						label={t('label.password')}
 						control={control}
 						autoComplete='current-password'
 						errorMessage={errors.password?.message}
@@ -100,13 +102,13 @@ const LoginForm = () => {
 				</Box>
 
 				<Box sx={{ margin: '16px 0px' }}>
-					<SubmitButton label='login' loading={isSubmitting} />
+					<SubmitButton label={t('form.login')} loading={isSubmitting} />
 				</Box>
 
 				<Box sx={{ margin: '8px 0px' }}>
 					<Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-						<ActionLinkButton href='#' label='Forgot Password?' />
-						<ActionLinkButton href='/admin/register' label='Create New Account' />
+						<ActionLinkButton href='#' label={t('form.forgotPassword')} />
+						<ActionLinkButton href='/admin/register' label={t('form.createAccount')} />
 					</Box>
 				</Box>
 			</form>

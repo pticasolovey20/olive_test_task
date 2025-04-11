@@ -1,0 +1,93 @@
+{
+	"confirm": {
+		"success": "Success",
+		"activateEmail": "To activate your profile, follow the instructions sent to your email"
+	},
+
+	"slogan": {
+		"take": "Take",
+		"reality": "reality",
+		"toTheNext": "to the next",
+		"level": "level"
+	},
+
+	"form": {
+		"welcome": "Welcome",
+		"loginToContinue": "Login to continue",
+		"almostThere": "Almost there...",
+		"next": "Next",
+		"login": "Login",
+		"register": "Register",
+		"forgotPassword": "Forgot Password?",
+		"createAccount": "Create New Account"
+	},
+
+	"validation": {
+		"required": "Required field",
+		"minLength": "Minimum length is {{count}}",
+		"maxLength": "Maximum length is {{count}}",
+		"email": "Not a valid email address",
+		"passwordFormat": "Password must be at least 8 english characters, and contain 1 uppercase, 1 lowercase and 1 digit",
+		"passwordsMustMatch": "Passwords must match",
+		"mustAccept": "You must accept the terms and conditions",
+		"phoneMustValid": "Phone must be valid"
+	},
+
+	"label": {
+		"firstName": "First Name",
+		"lastName": "Last Name",
+		"emailAddress": "Email Address",
+		"password": "Password",
+		"confirmPassword": "Confirm Password",
+		"company": "Company",
+		"phoneNumber": "Phone",
+		"country": "Country",
+		"source": "How did you hear about us?",
+		"isServiceProvider": "Are you a Matterport service provider?",
+		"numbersOfSpaces": "Number of spaces",
+		"numbersOfEmployees": "Number of employees",
+		"industry": "Industry",
+		"jobDescription": "Job Description",
+		"website": "Website",
+		"digital": "Do you have a digital presence?",
+		"subscription": "Subscribe to newsletter"
+	},
+
+	"privacyPolicy": {
+		"agree": "By registering, I agree to",
+		"termsOfUse": "Terms of Use",
+		"cookiePolicy": "Cookie Policy",
+		"and": "and",
+		"privacyPolicy": "Privacy Policy"
+	},
+
+	"radioOptions": {
+		"yes": "Yes",
+		"no": "No"
+	},
+
+	"countryOptions": {},
+
+	"sourceOptions": {
+		"matterportWebsite": "Matterport Website",
+		"emailMarketing": "Email Marketing",
+		"Facebook": "Facebook",
+		"WGAN_forum": "WGAN Forum",
+		"MOUG_forum": "MOUG Forum",
+		"googleSearch": "Google Search",
+		"instagram": "Instagram",
+		"wordOfMouth": "Word of Mouth",
+		"other": "Other"
+	},
+
+	"industryOptions": {
+		"realEstate": "Real Estate",
+		"manufacturing": "Manufacturing",
+		"travelHospitality": "Travel & Hospitality",
+		"museumsGalleries": "Museums & Galleries",
+		"education": "Education",
+		"corporateEnterprise": "Corporate & Enterprise",
+		"retailShowrooms": "Retail & Showrooms",
+		"other": "Other"
+	}
+}

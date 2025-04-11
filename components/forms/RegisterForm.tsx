@@ -2,22 +2,24 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { RegisterFormValues } from '@/interfaces/authInterfaces';
 import useRegisterFormStore from '@/stores/registrationStore';
-import { firstStepRegisterSchema, secondStepRegisterSchema } from '@/validation/authSchema';
+import { getRegisterSchema } from '@/validation/authSchema';
 
 import FormWrapper from '@/components/forms/FormWrapper';
 import RegisterFirstStep from '@/components/forms/RegisterFirstStep';
 import RegisterSecondStep from '@/components/forms/RegisterSecondStep';
 
-const fullRegisterSchema = firstStepRegisterSchema.concat(secondStepRegisterSchema);
-
 const RegisterForm = () => {
 	const [currentStep, setCurrentStep] = useState(1);
+
 	const { userData, setUserData } = useRegisterFormStore();
+	const { t } = useTranslation();
+
 	const router = useRouter();
 
 	const form = useForm<RegisterFormValues>({
@@ -25,7 +27,7 @@ const RegisterForm = () => {
 		mode: 'onChange',
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-		resolver: yupResolver(fullRegisterSchema) as any, //??,
+		resolver: yupResolver(getRegisterSchema(t)) as any, //??,
 	});
 
 	const onFormSubmit = (formData: RegisterFormValues) => {

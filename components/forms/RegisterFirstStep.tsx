@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useFormContext } from 'react-hook-form';
 
 import { RegisterFormValues } from '@/interfaces/authInterfaces';
@@ -7,6 +8,7 @@ import FormInput from '@/components/ui/FormInput';
 import PasswordFormInput from '@/components/ui/PasswordFormInput';
 
 const RegisterFirstStep = () => {
+	const { t } = useTranslation();
 	const {
 		control,
 		formState: { errors },
@@ -17,7 +19,7 @@ const RegisterFirstStep = () => {
 			<FormInput<RegisterFormValues>
 				type='text'
 				name='firstName'
-				label='First Name'
+				label={t('label.firstName')}
 				control={control}
 				errorMessage={errors.firstName?.message}
 			/>
@@ -25,7 +27,7 @@ const RegisterFirstStep = () => {
 			<FormInput<RegisterFormValues>
 				type='text'
 				name='lastName'
-				label='Last Name'
+				label={t('label.lastName')}
 				control={control}
 				errorMessage={errors.lastName?.message}
 				sx={{ marginTop: '16px' }}
@@ -34,7 +36,7 @@ const RegisterFirstStep = () => {
 			<FormInput<RegisterFormValues>
 				type='email'
 				name='emailAddress'
-				label='Email Address'
+				label={t('label.emailAddress')}
 				control={control}
 				errorMessage={errors.emailAddress?.message}
 				sx={{ marginTop: '16px' }}
@@ -42,17 +44,17 @@ const RegisterFirstStep = () => {
 
 			<PasswordFormInput<RegisterFormValues>
 				name='password'
-				label='Password'
+				label={t('label.password')}
 				control={control}
 				errorMessage={errors.password?.message}
 				autoComplete='current-password'
-				helperText='Must be at least 8 english characters, and contain 1 uppercase, 1 lowercase and 1 digit'
+				helperText={t('validation.passwordFormat')}
 				sx={{ marginTop: '16px' }}
 			/>
 
 			<PasswordFormInput<RegisterFormValues>
 				name='confirmPassword'
-				label='Confirm Password'
+				label={t('label.confirmPassword')}
 				control={control}
 				errorMessage={errors.confirmPassword?.message}
 				sx={{ marginTop: '16px' }}

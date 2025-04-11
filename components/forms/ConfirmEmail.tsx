@@ -2,11 +2,13 @@
 
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useTranslation } from 'react-i18next';
 
 import { Box, Typography } from '@mui/material';
 
 const ConfirmEmail = ({ emailAddress }: { emailAddress: string }) => {
 	const router = useRouter();
+	const { t } = useTranslation();
 
 	useEffect(() => {
 		router.replace('/admin/confirm-email');
@@ -54,13 +56,11 @@ const ConfirmEmail = ({ emailAddress }: { emailAddress: string }) => {
 					margin: '32px 0px',
 				}}
 			>
-				Success!
+				{t('confirm.success')}Success!
 			</Typography>
 
 			<Box>
-				<Typography sx={{ display: 'inline' }}>
-					To activate your profile, follow the instructions sent to your email
-				</Typography>{' '}
+				<Typography sx={{ display: 'inline' }}>{t('confirm.activateEmail')}</Typography>{' '}
 				<Typography sx={{ display: 'inline', fontWeight: 'bold' }}>{emailAddress}</Typography>
 			</Box>
 		</Box>

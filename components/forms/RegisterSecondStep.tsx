@@ -1,7 +1,8 @@
 import React, { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useFormContext, useWatch } from 'react-hook-form';
 
-import { countryOptions, sourceOptions } from '@/constants';
+import { countryOptions, getSourceOptions } from '@/constants';
 import { RegisterFormValues } from '@/interfaces/authInterfaces';
 
 import FormInput from '@/components/ui/FormInput';
@@ -17,6 +18,8 @@ const RegisterSecondStep = () => {
 		formState: { errors },
 	} = useFormContext<RegisterFormValues>();
 
+	const { t } = useTranslation();
+
 	const serviceProviderValue = useWatch({
 		control,
 		name: 'isServiceProvider',
@@ -30,7 +33,7 @@ const RegisterSecondStep = () => {
 			<FormInput<RegisterFormValues>
 				type='text'
 				name='company'
-				label='Company'
+				label={t('label.company')}
 				control={control}
 				errorMessage={errors.company?.message}
 			/>
@@ -39,7 +42,7 @@ const RegisterSecondStep = () => {
 
 			<FormSelect<RegisterFormValues>
 				name='country'
-				label='Country/Region'
+				label={t('label.country')}
 				control={control}
 				options={countryOptions}
 				errorMessage={errors.country?.message}
@@ -48,9 +51,9 @@ const RegisterSecondStep = () => {
 
 			<FormSelect<RegisterFormValues>
 				name='source'
-				label='How did you know about us?'
+				label={t('label.source')}
 				control={control}
-				options={sourceOptions}
+				options={getSourceOptions(t)}
 				errorMessage={errors.source?.message}
 				sx={{ marginTop: '16px' }}
 			/>

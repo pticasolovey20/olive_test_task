@@ -1,8 +1,9 @@
 import React, { FC, Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Controller, useFormContext } from 'react-hook-form';
 
 import { RegisterFormValues } from '@/interfaces/authInterfaces';
-import { numbersOfEmployeesOptions, industryOptions, numbersOfSpacesOptions } from '@/constants';
+import { numbersOfEmployeesOptions, getIndustryOptions, numbersOfSpacesOptions } from '@/constants';
 
 import { Box, FormControl, FormControlLabel, FormHelperText, Radio, RadioGroup, Typography } from '@mui/material';
 import FormSelect from '@/components/ui/FormSelect';
@@ -18,12 +19,14 @@ const ServiceProvider: FC<IServiceProviderProps> = ({ isServiceProvider }) => {
 		formState: { errors },
 	} = useFormContext<RegisterFormValues>();
 
+	const { t } = useTranslation();
+
 	return (
 		<Fragment>
 			<FormSelect<RegisterFormValues>
 				control={control}
 				name={isServiceProvider ? 'numbersOfSpaces' : 'numbersOfEmployees'}
-				label={isServiceProvider ? 'Numbers of Spaces' : 'Numbers of Employees'}
+				label={t(isServiceProvider ? 'label.numbersOfSpaces' : 'label.numbersOfEmployees')}
 				options={isServiceProvider ? numbersOfSpacesOptions : numbersOfEmployeesOptions}
 				errorMessage={isServiceProvider ? errors.numbersOfSpaces?.message : errors.numbersOfEmployees?.message}
 				sx={{ marginTop: '16px' }}
@@ -32,8 +35,8 @@ const ServiceProvider: FC<IServiceProviderProps> = ({ isServiceProvider }) => {
 			<FormSelect<RegisterFormValues>
 				control={control}
 				name={isServiceProvider ? 'numbersOfEmployees' : 'industry'}
-				label={isServiceProvider ? 'Numbers of Employees' : 'Industry'}
-				options={isServiceProvider ? numbersOfEmployeesOptions : industryOptions}
+				label={t(isServiceProvider ? 'label.numbersOfEmployees' : 'label.industry')}
+				options={isServiceProvider ? numbersOfEmployeesOptions : getIndustryOptions(t)}
 				errorMessage={isServiceProvider ? errors.numbersOfEmployees?.message : errors.industry?.message}
 				sx={{ marginTop: '16px' }}
 			/>
@@ -41,7 +44,7 @@ const ServiceProvider: FC<IServiceProviderProps> = ({ isServiceProvider }) => {
 			<FormInput<RegisterFormValues>
 				type='text'
 				name='jobDescription'
-				label='Job Description'
+				label={t('label.jobDescription')}
 				control={control}
 				errorMessage={errors.jobDescription?.message}
 				sx={{ marginTop: '16px' }}
@@ -50,7 +53,7 @@ const ServiceProvider: FC<IServiceProviderProps> = ({ isServiceProvider }) => {
 			<FormInput<RegisterFormValues>
 				type='text'
 				name='website'
-				label='Website'
+				label={t('label.website')}
 				control={control}
 				errorMessage={errors.website?.message}
 				sx={{ marginTop: '16px' }}
@@ -64,7 +67,7 @@ const ServiceProvider: FC<IServiceProviderProps> = ({ isServiceProvider }) => {
 						alignItems: 'center',
 					}}
 				>
-					<Typography id='digital '>Do you have an existing 3D digital twin?</Typography>
+					<Typography id='digital '>{t('label.digital')}</Typography>
 				</Box>
 
 				<Controller
@@ -72,8 +75,8 @@ const ServiceProvider: FC<IServiceProviderProps> = ({ isServiceProvider }) => {
 					control={control}
 					render={({ field: { value, onChange } }) => (
 						<RadioGroup row value={value} onChange={onChange}>
-							<FormControlLabel value='yes' control={<Radio />} label='Yes' />
-							<FormControlLabel value='no' control={<Radio />} label='No' />
+							<FormControlLabel value='yes' control={<Radio />} label={t('radioOptions.yes')} />
+							<FormControlLabel value='no' control={<Radio />} label={t('radioOptions.no')} />
 						</RadioGroup>
 					)}
 				/>

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Control, Controller, FieldErrors } from 'react-hook-form';
 
 import { links } from '@/constants';
@@ -13,6 +14,8 @@ interface IPolicyAgreementSectionProps {
 }
 
 const PolicyAgreementSection: FC<IPolicyAgreementSectionProps> = ({ control, errors }) => {
+	const { t } = useTranslation();
+
 	return (
 		<FormControl
 			fullWidth
@@ -31,7 +34,7 @@ const PolicyAgreementSection: FC<IPolicyAgreementSectionProps> = ({ control, err
 				render={({ field: { value, onChange } }) => (
 					<FormControlLabel
 						control={<Checkbox checked={value} onChange={onChange} />}
-						label={<Typography sx={{ fontSize: '0.875rem' }}>Subscribe to our newsletter</Typography>}
+						label={<Typography sx={{ fontSize: '0.875rem' }}>{t('label.subscription')}</Typography>}
 					/>
 				)}
 			/>
@@ -44,17 +47,17 @@ const PolicyAgreementSection: FC<IPolicyAgreementSectionProps> = ({ control, err
 						control={<Checkbox checked={value} onChange={onChange} />}
 						label={
 							<Typography sx={{ fontSize: '0.875rem' }}>
-								By registering, I agree to Treedis{' '}
+								{t('privacyPolicy.agree')}{' '}
 								<Link href={links.TERMS_OF_USE} target='_blank'>
-									Terms of Use
+									{t('privacyPolicy.termsOfUse')}
 								</Link>
 								,{' '}
 								<Link href={links.COOKIE_POLICY} target='_blank'>
-									Cookie Policy
+									{t('privacyPolicy.cookiePolicy')}
 								</Link>{' '}
-								and{' '}
+								{t('privacyPolicy.and')}{' '}
 								<Link href={links.PRIVACY_POLICY} target='_blank'>
-									Privacy Policy.
+									{t('privacyPolicy.privacyPolicy')}
 								</Link>
 							</Typography>
 						}

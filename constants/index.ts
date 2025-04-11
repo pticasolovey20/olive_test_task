@@ -1,4 +1,5 @@
 import { IOption } from '@/interfaces';
+import { TFunction } from 'i18next';
 
 export const countryOptions: IOption[] = [
 	{ label: 'Afghanistan', value: 'AF' },
@@ -163,16 +164,16 @@ export const countryOptions: IOption[] = [
 	{ label: 'Zimbabwe', value: 'ZW' },
 ];
 
-export const sourceOptions: IOption[] = [
-	{ label: 'Matterport Website', value: 'matterport_website' },
-	{ label: 'Email Marketing', value: 'email_marketing' },
-	{ label: 'Facebook', value: 'facebook' },
-	{ label: 'WGAN Forum', value: 'WGAN_forum' },
-	{ label: 'MOUG Forum', value: 'MOUG_forum' },
-	{ label: 'Google Search', value: 'google_search' },
-	{ label: 'Instagram', value: 'instagram' },
-	{ label: 'Word of Mouth', value: 'word_of_mouth' },
-	{ label: 'Other', value: 'other' },
+export const getSourceOptions = (t: TFunction): IOption[] => [
+	{ value: 'matterportWebsite', label: t('sourceOptions.matterportWebsite') },
+	{ value: 'emailMarketing', label: t('sourceOptions.emailMarketing') },
+	{ value: 'facebook', label: t('sourceOptions.facebook') },
+	{ value: 'WGAN_forum', label: t('sourceOptions.WGAN_forum') },
+	{ value: 'MOUG_forum', label: t('sourceOptions.MOUG_forum') },
+	{ value: 'googleSearch', label: t('sourceOptions.googleSearch') },
+	{ value: 'instagram', label: t('sourceOptions.instagram') },
+	{ value: 'wordOfMouth', label: t('sourceOptions.wordOfMouth') },
+	{ value: 'other', label: t('sourceOptions.other') },
 ];
 
 export const numbersOfSpacesOptions: IOption[] = [
@@ -192,15 +193,15 @@ export const numbersOfEmployeesOptions: IOption[] = [
 	{ value: '1000+', label: '1000+' },
 ];
 
-export const industryOptions: IOption[] = [
-	{ value: 'real_estate', label: 'Real Estate' },
-	{ value: 'manufacturing', label: 'Manufacturing' },
-	{ value: 'travel_hospitality', label: 'Travel & Hospitality' },
-	{ value: 'museums_galleries', label: 'Museums & Galleries' },
-	{ value: 'education', label: 'Education' },
-	{ value: 'corporate_enterprise', label: 'Corporate & Enterprise' },
-	{ value: 'retail_showrooms', label: 'Retail & Showrooms' },
-	{ value: 'other', label: 'Other' },
+export const getIndustryOptions = (t: TFunction): IOption[] => [
+	{ value: 'realEstate', label: t('industryOptions.realEstate') },
+	{ value: 'manufacturing', label: t('industryOptions.manufacturing') },
+	{ value: 'travelHospitality', label: t('industryOptions.travelHospitality') },
+	{ value: 'museumsGalleries', label: t('industryOptions.museumsGalleries') },
+	{ value: 'education', label: t('industryOptions.education') },
+	{ value: 'corporateEnterprise', label: t('industryOptions.corporateEnterprise') },
+	{ value: 'retailShowrooms', label: t('industryOptions.retailShowrooms') },
+	{ value: 'other', label: t('industryOptions.other') },
 ];
 
 export enum links {
