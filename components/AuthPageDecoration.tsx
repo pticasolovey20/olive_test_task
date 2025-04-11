@@ -1,8 +1,9 @@
-import React from 'react';
-
+import React, { lazy } from 'react';
 import { Box } from '@mui/material';
-import Logo from '@/components/Logo';
-import Slogan from '@/components/Slogan';
+import dynamic from 'next/dynamic';
+
+const Logo = dynamic(() => import('@/components/Logo'), { ssr: false });
+const Slogan = lazy(() => import('@/components/Slogan'));
 
 const AuthPageDecoration = () => {
 	return (

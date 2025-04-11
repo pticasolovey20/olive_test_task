@@ -15,7 +15,7 @@ const Logo = () => {
 				overflow: 'hidden',
 			}}
 		>
-			<Image priority src={logo} alt='logo' height={50} />
+			<Image loading='lazy' src={logo} alt='logo' height={50} />
 		</Box>
 	);
 };
