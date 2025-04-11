@@ -35,7 +35,7 @@ const LoginForm = () => {
 		const userFromMockDB = localStorage.getItem('userData');
 
 		if (!userFromMockDB) {
-			// { message: 'User not found' }
+			console.log({ message: 'User not found' });
 			return;
 		}
 
@@ -46,7 +46,7 @@ const LoginForm = () => {
 			handleLogin(userData);
 			router.push(`/admin/confirm-email?email=${formData.emailAddress}`);
 		} else {
-			// { message: 'Wrong password or email' }
+			console.log({ message: 'Wrong password or email' });
 		}
 	};
 
