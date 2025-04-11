@@ -1,42 +1,42 @@
-import React, { ChangeEvent } from 'react';
-import { FieldValues, Path, UseFormRegister } from 'react-hook-form';
-
+import React from 'react';
 import { SxProps, TextField } from '@mui/material';
+import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 
 interface IFormInputProps<T extends FieldValues> {
 	type: string;
 	name: Path<T>;
 	label: string;
-	register: UseFormRegister<T>;
+	control: Control<T>;
 	errorMessage?: string;
 	helperText?: string;
 	sx?: SxProps;
-	value: string;
-	onChange: (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
 }
 
 const FormInput = <T extends FieldValues>({
 	type,
 	name,
 	label,
-	register,
+	control,
 	errorMessage,
 	helperText,
 	sx,
-	value,
-	onChange,
 }: IFormInputProps<T>) => {
 	return (
-		<TextField
-			fullWidth
-			type={type}
-			label={label}
-			{...register(name)}
-			value={value}
-			onChange={onChange}
-			error={!!errorMessage}
-			helperText={errorMessage || helperText}
-			sx={sx}
+		<Controller
+			name={name}
+			control={control}
+			render={({ field: { value, onChange } }) => (
+				<TextField
+					fullWidth
+					type={type}
+					label={label}
+					value={value}
+					onChange={onChange}
+					error={!!errorMessage}
+					helperText={errorMessage || helperText}
+					sx={sx}
+				/>
+			)}
 		/>
 	);
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { ChangeEvent } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
@@ -10,15 +10,15 @@ import { BaseFormValues, RegisterFormValues } from '@/interfaces/authInterfaces'
 
 import { Box, Typography } from '@mui/material';
 import FormInput from '@/components/ui/FormInput';
-import PasswordFormInput from '@/components/ui/PasswordFormInput';
 import SubmitButton from '@/components/ui/SubmitButton';
 import ActionLinkButton from '@/components/ui/ActionLinkButton';
+import PasswordFormInput from '@/components/ui/PasswordFormInput';
 
 const LoginForm = () => {
 	const { formData, setFormData } = useLoginFormStore();
+
 	const {
-		register,
-		setValue,
+		control,
 		handleSubmit,
 		formState: { errors },
 	} = useForm<BaseFormValues>({
@@ -29,15 +29,10 @@ const LoginForm = () => {
 		resolver: yupResolver(loginSchema) as any, //??,
 	});
 
-	const handleInputChange = (
-		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-		name: keyof BaseFormValues
-	) => {
-		setFormData({ [name]: event.target.value });
-		setValue(name, event.target.value);
+	const onFormSubmit = (formData: BaseFormValues) => {
+		setFormData(formData);
+		console.log('formData:', formData);
 	};
-
-	const onFormSubmit = (formData: BaseFormValues) => console.log('formData:', formData);
 
 	return (
 		<Box
@@ -75,9 +70,7 @@ const LoginForm = () => {
 						type='email'
 						name='emailAddress'
 						label='Email Address'
-						register={register}
-						value={formData.emailAddress}
-						onChange={(event) => handleInputChange(event, 'emailAddress')}
+						control={control}
 						errorMessage={errors.emailAddress?.message}
 						sx={{ marginTop: '16px' }}
 					/>
@@ -85,11 +78,9 @@ const LoginForm = () => {
 					<PasswordFormInput<BaseFormValues | RegisterFormValues>
 						name='password'
 						label='Password'
-						register={register}
-						value={formData.password}
-						onChange={(event) => handleInputChange(event, 'password')}
-						errorMessage={errors.password?.message}
+						control={control}
 						autoComplete='current-password'
+						errorMessage={errors.password?.message}
 						sx={{ marginTop: '16px' }}
 					/>
 				</Box>

@@ -1,18 +1,17 @@
 'use client';
 
-import React, { ChangeEvent, useState } from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { SelectChangeEvent } from '@mui/material';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { FormProvider, useForm } from 'react-hook-form';
 
 import { RegisterFormValues } from '@/interfaces/authInterfaces';
+import useRegisterFormStore from '@/stores/registrationFormStore';
 import { firstStepRegisterSchema, secondStepRegisterSchema } from '@/validation/authSchema';
 
+import FormWrapper from '@/components/forms/FormWrapper';
 import RegisterFirstStep from '@/components/forms/RegisterFirstStep';
 import RegisterSecondStep from '@/components/forms/RegisterSecondStep';
-import FormWrapper from '@/components/forms/FormWrapper';
-import useRegisterFormStore from '@/stores/registrationFormStore';
 
 const fullRegisterSchema = firstStepRegisterSchema.concat(secondStepRegisterSchema);
 
@@ -29,47 +28,17 @@ const RegisterForm = () => {
 		resolver: yupResolver(fullRegisterSchema) as any, //??,
 	});
 
-	const handleInputChange = (
-		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-		name: keyof RegisterFormValues
-	) => {
-		setFormData({ [name]: event.target.value });
-		form.setValue(name, event.target.value);
-	};
-
-	const handleSelectChange = (event: SelectChangeEvent<string | boolean | null>, name: keyof RegisterFormValues) => {
-		setFormData({ [name]: event.target.value });
-		form.setValue(name, event.target.value);
-	};
-
-	const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>, name: keyof RegisterFormValues) => {
-		setFormData({ [name]: event.target.checked });
-		form.setValue(name, event.target.checked);
-	};
-
-	const handleRadioChange = (event: ChangeEvent<HTMLInputElement>, name: keyof RegisterFormValues) => {
-		setFormData({ [name]: event.target.value });
-		form.setValue(name, event.target.value);
-	};
-
 	const onFormSubmit = (formData: RegisterFormValues) => {
-		console.log('final formData:', formData);
+		console.log(formData);
+		setFormData(formData);
 		router.push(`/admin/confirm-email?email=${formData.emailAddress}`);
 	};
 
 	return (
 		<FormProvider {...form}>
 			<FormWrapper currentStep={currentStep} setCurrentStep={setCurrentStep} onFormSubmit={onFormSubmit}>
-				{currentStep === 1 && <RegisterFirstStep formData={formData} handleInputChange={handleInputChange} />}
-				{currentStep === 2 && (
-					<RegisterSecondStep
-						formData={formData}
-						handleInputChange={handleInputChange}
-						handleSelectChange={handleSelectChange}
-						handleRadioChange={handleRadioChange}
-						handleCheckboxChange={handleCheckboxChange}
-					/>
-				)}
+				{currentStep === 1 && <RegisterFirstStep />}
+				{currentStep === 2 && <RegisterSecondStep />}
 			</FormWrapper>
 		</FormProvider>
 	);

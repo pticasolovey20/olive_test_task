@@ -1,4 +1,7 @@
-import { IOption } from '@/interfaces/interfaces';
+interface IOption {
+	label: string;
+	value: string;
+}
 
 export const countryOptions: IOption[] = [
 	{ label: 'Afghanistan', value: 'AF' },

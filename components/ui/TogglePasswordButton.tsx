@@ -9,6 +9,7 @@ interface ITogglePasswordButtonProps {
 const TogglePasswordButton: FC<ITogglePasswordButtonProps> = ({ showPassword, handleToggle }) => {
 	return (
 		<Button
+			aria-label={showPassword ? 'Hide password' : 'Show password'}
 			onClick={handleToggle}
 			sx={{
 				minWidth: '40px',

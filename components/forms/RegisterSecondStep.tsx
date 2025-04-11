@@ -1,5 +1,4 @@
-import React, { FC, ChangeEvent, Fragment } from 'react';
-import { SelectChangeEvent } from '@mui/material';
+import React, { Fragment } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 
 import { countryOptions, sourceOptions } from '@/constants';
@@ -8,31 +7,13 @@ import { RegisterFormValues } from '@/interfaces/authInterfaces';
 import FormInput from '@/components/ui/FormInput';
 import FormSelect from '@/components/ui/FormSelect';
 import ServiceProvider from '@/components/ServiceProvider';
-import ServiceProviderRadioGroup from '@/components/ServiceProviderRadioGroup';
-import PolicyAgreementSection from '@/components/PolicyAgreementSection';
 import FormPhoneInput from '@/components/ui/FormPhoneInput';
+import PolicyAgreementSection from '@/components/PolicyAgreementSection';
+import ServiceProviderRadioGroup from '@/components/ServiceProviderRadioGroup';
 
-interface IRegisterSecondStepProps {
-	formData: RegisterFormValues;
-	handleInputChange: (
-		event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-		name: keyof RegisterFormValues
-	) => void;
-	handleSelectChange: (event: SelectChangeEvent<string | boolean | null>, name: keyof RegisterFormValues) => void;
-	handleCheckboxChange: (event: ChangeEvent<HTMLInputElement>, name: keyof RegisterFormValues) => void;
-	handleRadioChange: (event: ChangeEvent<HTMLInputElement>, name: keyof RegisterFormValues) => void;
-}
-
-const RegisterSecondStep: FC<IRegisterSecondStepProps> = ({
-	formData,
-	handleInputChange,
-	handleSelectChange,
-	handleCheckboxChange,
-	handleRadioChange,
-}) => {
+const RegisterSecondStep = () => {
 	const {
 		control,
-		register,
 		formState: { errors },
 	} = useFormContext<RegisterFormValues>();
 
@@ -46,63 +27,42 @@ const RegisterSecondStep: FC<IRegisterSecondStepProps> = ({
 
 	return (
 		<Fragment>
-			<FormInput
+			<FormInput<RegisterFormValues>
 				type='text'
 				name='company'
 				label='Company'
-				register={register}
-				value={formData.company || ''}
-				onChange={(event) => handleInputChange(event, 'company')}
+				control={control}
 				errorMessage={errors.company?.message}
 			/>
 
-			<FormPhoneInput
+			<FormPhoneInput<RegisterFormValues>
 				name='phoneNumber'
 				control={control}
 				errorMessage={errors.phoneNumber?.message}
 				sx={{ marginTop: '16px' }}
 			/>
 
-			<FormSelect
+			<FormSelect<RegisterFormValues>
 				name='country'
 				label='Country/Region'
-				register={register}
-				errorMessage={errors.country?.message}
+				control={control}
 				options={countryOptions}
-				value={formData.country}
-				onChange={(event) => handleSelectChange(event, 'country')}
+				errorMessage={errors.country?.message}
 				sx={{ marginTop: '16px' }}
 			/>
 
-			<FormSelect
+			<FormSelect<RegisterFormValues>
 				name='source'
 				label='How did you know about us?'
-				register={register}
-				errorMessage={errors.source?.message}
+				control={control}
 				options={sourceOptions}
-				value={formData.source}
-				onChange={(event) => handleSelectChange(event, 'source')}
+				errorMessage={errors.source?.message}
 				sx={{ marginTop: '16px' }}
 			/>
 
-			<ServiceProviderRadioGroup
-				formData={formData}
-				control={control}
-				errors={errors}
-				handleRadioChange={handleRadioChange}
-			/>
-
-			{showServiceProvider && (
-				<ServiceProvider
-					isServiceProvider={isServiceProvider}
-					formData={formData}
-					handleSelectChange={handleSelectChange}
-					handleInputChange={handleInputChange}
-					handleRadioChange={handleRadioChange}
-				/>
-			)}
-
-			<PolicyAgreementSection register={register} errors={errors} handleCheckboxChange={handleCheckboxChange} />
+			<ServiceProviderRadioGroup control={control} errors={errors} />
+			{showServiceProvider && <ServiceProvider isServiceProvider={isServiceProvider} />}
+			<PolicyAgreementSection control={control} errors={errors} />
 		</Fragment>
 	);
 };

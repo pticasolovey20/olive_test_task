@@ -112,22 +112,7 @@ const FormPhoneInput = <T extends FieldValues>({ name, control, errorMessage, sx
 			control={control}
 			render={({ field: { value, onChange } }) => (
 				<FormControl fullWidth error={!!errorMessage} sx={sx}>
-					<StyledPhoneInput
-						country='us'
-						placeholder=''
-						specialLabel='Phone'
-						value={value}
-						onChange={onChange}
-						isValid={(value, country) => {
-							if (value.match(/12345/)) {
-								return 'Invalid value: ' + value + ', ' + country;
-							} else if (value.match(/1234/)) {
-								return false;
-							} else {
-								return true;
-							}
-						}}
-					/>
+					<StyledPhoneInput country='us' placeholder='' specialLabel='Phone' value={value} onChange={onChange} />
 
 					{!!errorMessage && <FormHelperText>{errorMessage}</FormHelperText>}
 				</FormControl>

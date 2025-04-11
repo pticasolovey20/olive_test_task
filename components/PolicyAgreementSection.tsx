@@ -1,74 +1,65 @@
-import React, { ChangeEvent, FC } from 'react';
-import { FieldErrors, UseFormRegister } from 'react-hook-form';
+import React, { FC } from 'react';
+import { Control, Controller, FieldErrors } from 'react-hook-form';
 
 import { links } from '@/constants';
-import useRegisterFormStore from '@/stores/registrationFormStore';
 import { RegisterFormValues } from '@/interfaces/authInterfaces';
 
 import Link from 'next/link';
 import { Checkbox, FormControl, FormControlLabel, FormHelperText, Typography } from '@mui/material';
 
 interface IPolicyAgreementSectionProps {
-	register: UseFormRegister<RegisterFormValues>;
+	control: Control<RegisterFormValues>;
 	errors: FieldErrors<RegisterFormValues>;
-	handleCheckboxChange: (event: ChangeEvent<HTMLInputElement>, name: keyof RegisterFormValues) => void;
 }
 
-const PolicyAgreementSection: FC<IPolicyAgreementSectionProps> = ({ register, errors, handleCheckboxChange }) => {
-	const { formData } = useRegisterFormStore();
-
+const PolicyAgreementSection: FC<IPolicyAgreementSectionProps> = ({ control, errors }) => {
 	return (
 		<FormControl
 			fullWidth
 			error={!!errors.privacyPolicy?.message}
 			sx={{
 				fontSize: '0.875rem',
-
 				display: 'flex',
 				flexDirection: 'column',
-
 				paddingLeft: '8px',
 				marginTop: '16px',
 			}}
 		>
-			<FormControlLabel
-				control={
-					<Checkbox
-						id='subscription'
-						{...register('subscription')}
-						value={formData.subscription}
-						defaultChecked={formData.subscription}
-						onChange={(event) => handleCheckboxChange(event, 'subscription')}
+			<Controller
+				name='subscription'
+				control={control}
+				render={({ field: { value, onChange } }) => (
+					<FormControlLabel
+						control={<Checkbox checked={value} onChange={onChange} />}
+						label={<Typography sx={{ fontSize: '0.875rem' }}>Subscribe to our newsletter</Typography>}
 					/>
-				}
-				label={<Typography sx={{ fontSize: '0.875rem' }}>Subscribe to our newsletter</Typography>}
+				)}
 			/>
 
-			<FormControlLabel
-				control={
-					<Checkbox
-						id='privacyPolicy'
-						{...register('privacyPolicy')}
-						value={formData.privacyPolicy}
-						onChange={(event) => handleCheckboxChange(event, 'privacyPolicy')}
+			<Controller
+				name='privacyPolicy'
+				control={control}
+				render={({ field: { value, onChange } }) => (
+					<FormControlLabel
+						control={<Checkbox checked={value} onChange={onChange} />}
+						label={
+							<Typography sx={{ fontSize: '0.875rem' }}>
+								By registering, I agree to Treedis{' '}
+								<Link href={links.TERMS_OF_USE} target='_blank'>
+									Terms of Use
+								</Link>
+								,{' '}
+								<Link href={links.COOKIE_POLICY} target='_blank'>
+									Cookie Policy
+								</Link>{' '}
+								and{' '}
+								<Link href={links.PRIVACY_POLICY} target='_blank'>
+									Privacy Policy.
+								</Link>
+							</Typography>
+						}
 					/>
-				}
-				label={
-					<Typography sx={{ fontSize: '0.875rem' }}>
-						By registering, I agree to Treedis{' '}
-						<Link href={links.TERMS_OF_USE} target='_blank'>
-							Terms of Use
-						</Link>{' '}
-						,{' '}
-						<Link href={links.COOKIE_POLICY} target='_blank'>
-							Cookie Policy
-						</Link>{' '}
-						and{' '}
-						<Link href={links.PRIVACY_POLICY} target='_blank'>
-							Privacy Policy.
-						</Link>
-					</Typography>
-				}
+				)}
 			/>
 
 			{!!errors.privacyPolicy?.message && <FormHelperText>{errors.privacyPolicy?.message}</FormHelperText>}

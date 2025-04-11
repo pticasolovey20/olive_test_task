@@ -9,6 +9,7 @@ const BackButton: FC<IBackButtonProps> = ({ handlePrev }) => {
 	return (
 		<Button
 			variant='text'
+			aria-label='back'
 			onClick={handlePrev}
 			sx={{
 				color: 'rgb(32, 85, 255)',
