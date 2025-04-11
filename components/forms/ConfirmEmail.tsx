@@ -56,7 +56,7 @@ const ConfirmEmail = ({ emailAddress }: { emailAddress: string }) => {
 					margin: '32px 0px',
 				}}
 			>
-				{t('confirm.success')}Success!
+				{t('confirm.success')}
 			</Typography>
 
 			<Box>
