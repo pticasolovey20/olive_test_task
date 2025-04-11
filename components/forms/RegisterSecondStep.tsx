@@ -35,12 +35,7 @@ const RegisterSecondStep = () => {
 				errorMessage={errors.company?.message}
 			/>
 
-			<FormPhoneInput<RegisterFormValues>
-				name='phoneNumber'
-				control={control}
-				errorMessage={errors.phoneNumber?.message}
-				sx={{ marginTop: '16px' }}
-			/>
+			<FormPhoneInput<RegisterFormValues> name='phoneNumber' control={control} sx={{ marginTop: '16px' }} />
 
 			<FormSelect<RegisterFormValues>
 				name='country'

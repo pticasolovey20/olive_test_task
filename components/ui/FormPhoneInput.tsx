@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useState } from 'react';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 
 import PhoneInput from 'react-phone-input-2';
@@ -9,7 +10,6 @@ import { FormControl, FormHelperText, styled, SxProps } from '@mui/material';
 interface IFormPhoneInputProps<T extends FieldValues> {
 	name: Path<T>;
 	control: Control<T>;
-	errorMessage?: string;
 	sx?: SxProps;
 }
 
@@ -38,6 +38,17 @@ const StyledPhoneInput = styled(PhoneInput)`
 		border-width: 2px;
 		border-color: rgb(32, 85, 255);
 		outline: none;
+	}
+
+	.form-control.invalid-number {
+		background: transparent;
+		border-color: rgb(243, 72, 72);
+	}
+
+	.form-control.invalid-number:focus {
+		border-width: 2px;
+		background: transparent;
+		border-color: rgb(243, 72, 72);
 	}
 
 	.special-label {
@@ -105,16 +116,44 @@ const StyledPhoneInput = styled(PhoneInput)`
 	}
 `;
 
-const FormPhoneInput = <T extends FieldValues>({ name, control, errorMessage, sx }: IFormPhoneInputProps<T>) => {
+const FormPhoneInput = <T extends FieldValues>({ name, control, sx }: IFormPhoneInputProps<T>) => {
+	const [phoneNumberError, setPhoneNumberError] = useState<boolean>(false);
+
+	const validatePhoneNumber = (inputNumber: string, country: any, isDirty: boolean) => {
+		const phoneLength = Math.ceil(country.format.length / 2);
+
+		if (isDirty) {
+			if (!inputNumber) {
+				setPhoneNumberError(false);
+				return true;
+			}
+
+			if (inputNumber.length < phoneLength) {
+				setPhoneNumberError(true);
+				return false;
+			}
+		}
+
+		setPhoneNumberError(false);
+		return true;
+	};
+
 	return (
 		<Controller
 			name={name}
 			control={control}
-			render={({ field: { value, onChange } }) => (
-				<FormControl fullWidth error={!!errorMessage} sx={sx}>
-					<StyledPhoneInput country='us' placeholder='' specialLabel='Phone' value={value} onChange={onChange} />
+			render={({ field: { value, onChange }, formState }) => (
+				<FormControl fullWidth error={phoneNumberError} sx={sx}>
+					<StyledPhoneInput
+						country='us'
+						placeholder=''
+						specialLabel='Phone'
+						value={value}
+						onChange={onChange}
+						isValid={(value: string, country: any) => validatePhoneNumber(value, country, formState.isDirty)}
+					/>
 
-					{!!errorMessage && <FormHelperText>{errorMessage}</FormHelperText>}
+					{phoneNumberError && <FormHelperText>Phone must be valid</FormHelperText>}
 				</FormControl>
 			)}
 		/>
