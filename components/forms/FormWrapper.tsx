@@ -17,7 +17,7 @@ interface IFormWrapperProps {
 
 const FormWrapper: FC<IFormWrapperProps> = ({ currentStep, setCurrentStep, onFormSubmit, children }) => {
 	const router = useRouter();
-	const { trigger, handleSubmit } = useFormContext<RegisterFormValues>();
+	const { trigger, handleSubmit, formState } = useFormContext<RegisterFormValues>();
 
 	const handlePrev = () => {
 		if (currentStep === 1) {
@@ -107,7 +107,7 @@ const FormWrapper: FC<IFormWrapperProps> = ({ currentStep, setCurrentStep, onFor
 					</Box>
 
 					<Box sx={{ padding: '0px 10px', marginTop: '16px' }}>
-						<SubmitButton label={currentStep === 1 ? 'Next' : 'Register'} />
+						<SubmitButton label={currentStep === 1 ? 'Next' : 'Register'} loading={formState.isSubmitting} />
 					</Box>
 				</Box>
 			</form>

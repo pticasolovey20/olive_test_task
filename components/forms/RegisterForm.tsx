@@ -6,7 +6,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { FormProvider, useForm } from 'react-hook-form';
 
 import { RegisterFormValues } from '@/interfaces/authInterfaces';
-import useRegisterFormStore from '@/stores/registrationFormStore';
+import useRegisterFormStore from '@/stores/registrationStore';
 import { firstStepRegisterSchema, secondStepRegisterSchema } from '@/validation/authSchema';
 
 import FormWrapper from '@/components/forms/FormWrapper';
@@ -17,11 +17,11 @@ const fullRegisterSchema = firstStepRegisterSchema.concat(secondStepRegisterSche
 
 const RegisterForm = () => {
 	const [currentStep, setCurrentStep] = useState(1);
-	const { formData, setFormData } = useRegisterFormStore();
+	const { userData, setUserData } = useRegisterFormStore();
 	const router = useRouter();
 
 	const form = useForm<RegisterFormValues>({
-		defaultValues: formData,
+		defaultValues: userData,
 		mode: 'onChange',
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,7 +30,8 @@ const RegisterForm = () => {
 
 	const onFormSubmit = (formData: RegisterFormValues) => {
 		console.log(formData);
-		setFormData(formData);
+		setUserData(formData);
+		localStorage.setItem('userData', JSON.stringify(formData));
 		router.push(`/admin/confirm-email?email=${formData.emailAddress}`);
 	};
 

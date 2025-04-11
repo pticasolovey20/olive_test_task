@@ -1,12 +1,13 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { loginSchema } from '@/validation/authSchema';
-import useLoginFormStore from '@/stores/loginFormStore';
-import { BaseFormValues, RegisterFormValues } from '@/interfaces/authInterfaces';
+import useLoginFormStore from '@/stores/authStore';
+import { LoginFormValues } from '@/interfaces/authInterfaces';
 
 import { Box, Typography } from '@mui/material';
 import FormInput from '@/components/ui/FormInput';
@@ -15,23 +16,36 @@ import ActionLinkButton from '@/components/ui/ActionLinkButton';
 import PasswordFormInput from '@/components/ui/PasswordFormInput';
 
 const LoginForm = () => {
-	const { formData, setFormData } = useLoginFormStore();
-
+	const { handleLogin } = useLoginFormStore();
+	const router = useRouter();
 	const {
 		control,
 		handleSubmit,
-		formState: { errors },
-	} = useForm<BaseFormValues>({
-		defaultValues: formData,
+		formState: { errors, isSubmitting },
+	} = useForm<LoginFormValues>({
 		mode: 'onChange',
 
 		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		resolver: yupResolver(loginSchema) as any, //??,
 	});
 
-	const onFormSubmit = (formData: BaseFormValues) => {
-		setFormData(formData);
-		console.log('formData:', formData);
+	const onFormSubmit = (formData: LoginFormValues) => {
+		const userFromMockDB = localStorage.getItem('userData');
+
+		if (!userFromMockDB) {
+			// { message: 'User not found' }
+			return;
+		}
+
+		const userData = JSON.parse(userFromMockDB);
+
+		if (userData.password === formData.password) {
+			console.log('formData:', formData);
+			handleLogin(userData);
+			router.push(`/admin/confirm-email?email=${formData.emailAddress}`);
+		} else {
+			// { message: 'Wrong password or email' }
+		}
 	};
 
 	return (
@@ -66,7 +80,7 @@ const LoginForm = () => {
 						flexDirection: 'column',
 					}}
 				>
-					<FormInput<BaseFormValues | RegisterFormValues>
+					<FormInput<LoginFormValues>
 						type='email'
 						name='emailAddress'
 						label='Email Address'
@@ -75,7 +89,7 @@ const LoginForm = () => {
 						sx={{ marginTop: '16px' }}
 					/>
 
-					<PasswordFormInput<BaseFormValues | RegisterFormValues>
+					<PasswordFormInput<LoginFormValues>
 						name='password'
 						label='Password'
 						control={control}
@@ -86,7 +100,7 @@ const LoginForm = () => {
 				</Box>
 
 				<Box sx={{ margin: '16px 0px' }}>
-					<SubmitButton label='login' />
+					<SubmitButton label='login' loading={isSubmitting} />
 				</Box>
 
 				<Box sx={{ margin: '8px 0px' }}>

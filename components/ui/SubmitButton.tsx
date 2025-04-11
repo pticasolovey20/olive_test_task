@@ -3,14 +3,16 @@ import { Button, useTheme } from '@mui/material';
 
 interface ISubmitButtonProps {
 	label: string;
+	loading: boolean;
 }
 
-const SubmitButton: FC<ISubmitButtonProps> = ({ label }) => {
+const SubmitButton: FC<ISubmitButtonProps> = ({ label, loading }) => {
 	const theme = useTheme();
 
 	return (
 		<Button
 			fullWidth
+			loading={loading}
 			type='submit'
 			sx={{
 				color: 'rgb(255,255,255)',
