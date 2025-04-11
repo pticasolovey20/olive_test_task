@@ -1,13 +1,13 @@
 import { create } from 'zustand';
-import { RegisterValues } from '@/interfaces/authInterfaces';
+import { RegisterFormValues } from '@/interfaces/authInterfaces';
 
 interface RegisterFormStore {
-	userData: RegisterValues;
-	setUserData: (userData: Partial<RegisterValues>) => void;
+	userData: RegisterFormValues;
+	setUserData: (userData: Partial<RegisterFormValues>) => void;
 	resetUserData: () => void;
 }
 
-const INITIAL_DATA: RegisterValues = {
+const INITIAL_DATA: RegisterFormValues = {
 	firstName: '',
 	lastName: '',
 	emailAddress: '',
@@ -34,7 +34,7 @@ const INITIAL_DATA: RegisterValues = {
 const useRegisterStore = create<RegisterFormStore>((set) => ({
 	userData: INITIAL_DATA,
 
-	setUserData: (newUserData: Partial<RegisterValues>) =>
+	setUserData: (newUserData: Partial<RegisterFormValues>) =>
 		set((state) => ({
 			userData: { ...state.userData, ...newUserData },
 		})),
