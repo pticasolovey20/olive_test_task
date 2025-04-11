@@ -1,7 +1,9 @@
 import React from 'react';
-import { Typography } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 
 const Slogan = () => {
+	const theme = useTheme();
+
 	return (
 		<Typography
 			sx={{
@@ -24,7 +26,7 @@ const Slogan = () => {
 					borderRadius: '10px',
 					paddingLeft: '4px',
 					paddingRight: '4px',
-					backgroundColor: 'rgb(32, 85, 255)',
+					backgroundColor: theme.palette.primary.main,
 				}}
 			>
 				reality

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button, Box } from '@mui/material';
+import { Button, Box, useTheme } from '@mui/material';
 
 interface ITogglePasswordButtonProps {
 	showPassword: boolean;
@@ -7,6 +7,8 @@ interface ITogglePasswordButtonProps {
 }
 
 const TogglePasswordButton: FC<ITogglePasswordButtonProps> = ({ showPassword, handleToggle }) => {
+	const theme = useTheme();
+
 	return (
 		<Button
 			aria-label={showPassword ? 'Hide password' : 'Show password'}
@@ -23,10 +25,10 @@ const TogglePasswordButton: FC<ITogglePasswordButtonProps> = ({ showPassword, ha
 					width: '22px',
 					height: '18px',
 
-					color: 'rgb(0,0,0)',
+					color: 'black',
 
 					'&:hover': {
-						color: 'rgb(32,85,255)',
+						color: theme.palette.primary.main,
 					},
 				}}
 			>

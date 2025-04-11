@@ -30,25 +30,25 @@ const StyledPhoneInput = styled(PhoneInput)`
 	}
 
 	.form-control:hover {
-		border-color: black;
+		border-color: ${({ theme }) => theme.palette.primary.main};
 		outline: none;
 	}
 
 	.form-control:focus {
 		border-width: 2px;
-		border-color: rgb(32, 85, 255);
+		border-color: ${({ theme }) => theme.palette.primary.main};
 		outline: none;
 	}
 
 	.form-control.invalid-number {
 		background: transparent;
-		border-color: rgb(243, 72, 72);
+		border-color: ${({ theme }) => theme.palette.error.main};
 	}
 
 	.form-control.invalid-number:focus {
 		border-width: 2px;
 		background: transparent;
-		border-color: rgb(243, 72, 72);
+		border-color: ${({ theme }) => theme.palette.error.main};
 	}
 
 	.special-label {
@@ -110,7 +110,6 @@ const StyledPhoneInput = styled(PhoneInput)`
 			position: static;
 			width: 25px;
 			height: 20px;
-
 			margin-top: 2px !important;
 		}
 	}

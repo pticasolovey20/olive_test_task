@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Button } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 
 interface IActionLinkButtonProps {
 	href: string;
@@ -7,12 +7,14 @@ interface IActionLinkButtonProps {
 }
 
 const ActionLinkButton: FC<IActionLinkButtonProps> = ({ href, label }) => {
+	const theme = useTheme();
+
 	return (
 		<Button
 			href={href}
 			variant='text'
 			sx={{
-				color: 'rgb(32, 85, 255)',
+				color: theme.palette.primary.main,
 				textTransform: 'capitalize',
 				fontSize: '0.875rem',
 				lineHeight: 1.75,

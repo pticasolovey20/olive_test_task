@@ -1,18 +1,20 @@
 import React, { FC } from 'react';
-import { Button, Box } from '@mui/material';
+import { Button, Box, useTheme } from '@mui/material';
 
 interface IBackButtonProps {
 	handlePrev: () => void;
 }
 
 const BackButton: FC<IBackButtonProps> = ({ handlePrev }) => {
+	const theme = useTheme();
+
 	return (
 		<Button
 			variant='text'
 			aria-label='back'
 			onClick={handlePrev}
 			sx={{
-				color: 'rgb(32, 85, 255)',
+				color: theme.palette.primary.main,
 
 				minWidth: '64px',
 

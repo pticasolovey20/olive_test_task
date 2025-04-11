@@ -1,6 +1,16 @@
 import { createTheme } from '@mui/material';
 
 const theme = createTheme({
+	palette: {
+		primary: {
+			main: 'rgb(32, 85, 255)',
+		},
+
+		error: {
+			main: 'rgb(243, 72, 72)',
+		},
+	},
+
 	typography: {
 		fontFamily: ['Codecpro', 'sans-serif'].join(','),
 	},
@@ -18,18 +28,18 @@ const theme = createTheme({
 	components: {
 		MuiOutlinedInput: {
 			styleOverrides: {
-				root: {
+				root: ({ theme }) => ({
 					borderRadius: '8px',
 					background: 'transparent',
 
 					'&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-						borderColor: 'rgb(32, 85, 255)',
+						borderColor: theme.palette.primary.main,
 					},
 
 					'&.Mui-error .MuiOutlinedInput-notchedOutline': {
-						borderColor: 'rgb(243, 72, 72)',
+						borderColor: theme.palette.error.main,
 					},
-				},
+				}),
 
 				input: {
 					padding: '12.5px 14px',
@@ -39,7 +49,7 @@ const theme = createTheme({
 
 		MuiInputLabel: {
 			styleOverrides: {
-				root: {
+				root: ({ theme }) => ({
 					top: '-3px',
 					left: '-4px',
 
@@ -48,52 +58,52 @@ const theme = createTheme({
 					padding: '0px 4px',
 
 					'&.Mui-focused': {
-						color: 'rgb(32, 85, 255)',
+						color: theme.palette.primary.main,
 					},
 
 					'&.Mui-error': {
-						color: 'rgb(243, 72, 72)',
+						color: theme.palette.error.main,
 					},
 
 					'&.MuiInputLabel-shrink': {
 						top: '1px',
 					},
-				},
+				}),
 			},
 		},
 
 		MuiFormHelperText: {
 			styleOverrides: {
-				root: {
+				root: ({ theme }) => ({
 					margin: '3px 14px -10px',
 
 					'&.Mui-error': {
-						color: 'rgb(243, 72, 72)',
+						color: theme.palette.error.main,
 					},
-				},
+				}),
 			},
 		},
 
 		MuiRadio: {
 			styleOverrides: {
-				root: {
+				root: ({ theme }) => ({
 					'&.Mui-checked': {
-						color: 'rgb(32, 85, 255)',
+						color: theme.palette.primary.main,
 					},
-				},
+				}),
 			},
 		},
 
 		MuiCheckbox: {
 			styleOverrides: {
-				root: {
+				root: ({ theme }) => ({
 					padding: '9px',
 					borderRadius: '4px',
 
 					'&.Mui-checked': {
-						color: 'rgb(32, 85, 255)',
+						color: theme.palette.primary.main,
 					},
-				},
+				}),
 			},
 		},
 	},

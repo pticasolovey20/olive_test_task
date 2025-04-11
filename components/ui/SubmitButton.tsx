@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
-import { Button } from '@mui/material';
+import { Button, useTheme } from '@mui/material';
 
 interface ISubmitButtonProps {
 	label: string;
 }
 
 const SubmitButton: FC<ISubmitButtonProps> = ({ label }) => {
+	const theme = useTheme();
+
 	return (
 		<Button
 			fullWidth
@@ -20,7 +22,7 @@ const SubmitButton: FC<ISubmitButtonProps> = ({ label }) => {
 
 				padding: '8px 22px',
 				borderRadius: '8px',
-				background: 'rgb(32, 85, 255)',
+				background: theme.palette.primary.main,
 			}}
 		>
 			{label}
